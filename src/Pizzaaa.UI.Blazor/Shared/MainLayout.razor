@@ -1,0 +1,96 @@
+﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Pizzaaa.UI.Blazor.Data.Theme;
+
+@inject ThemeService ThemeService
+@inject ProtectedLocalStorage ProtectedLocalStorage
+
+<PageTitle>Pizzaaa.UI.Blazor</PageTitle>
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+	<MudAppBar>
+		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+		Pizzaaa
+		<MudSpacer />
+		<MudSwitch Checked=_isDarkMode
+				   ThumbIcon="@(_isDarkMode==true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
+				   ThumbIconColor="@(_isDarkMode==true ? Color.Primary : Color.Secondary)"
+				   Class="ma-4" T="bool" CheckedChanged=HandleCheck />
+
+	</MudAppBar>
+	<MudDrawer @bind-Open="@_drawerOpen">
+		<MyNavMenu />
+	</MudDrawer>
+	<MudMainContent>
+		<MudContainer MaxWidth="MaxWidth.Medium">
+			<CascadingValue Value=UpdateStyle>
+				@Body
+			</CascadingValue>
+		</MudContainer>
+	</MudMainContent>
+</MudLayout>
+
+@code {
+	bool _drawerOpen = true;
+	private MudTheme _theme = new();
+	private bool _isDarkMode;
+	private string _themeName = "";
+	private const string THEME_STORAGE_NAME = "theme";
+
+	private async Task HandleCheck(bool value)
+	{
+		_isDarkMode = value;
+		ThemeDto theme = new()
+			{
+				DarkMode = _isDarkMode,
+				ThemeName = _themeName
+			};
+
+		await ProtectedLocalStorage.SetAsync(THEME_STORAGE_NAME, theme);
+	}
+
+	protected async override Task OnInitializedAsync()
+	{
+		// in onInitialiazed you can access the local storage only if it's not prerendered. you can change it by modifying _Host.cshtml
+		// so that the row  <component type="typeof(App)" render-mode="ServerPrerendered" />
+		// becomes          <component type="typeof(App)" render-mode="Server" />
+		// see https://learn.microsoft.com/en-us/aspnet/core/blazor/state-management?view=aspnetcore-6.0&pivots=server#handle-prerendering
+		var storedTheme = await ProtectedLocalStorage.GetAsync<ThemeDto>(THEME_STORAGE_NAME);
+		if (storedTheme.Success && storedTheme.Value != null)
+		{
+			ThemeDto theme = storedTheme.Value;
+			_themeName = theme.ThemeName;
+			_isDarkMode = theme.DarkMode;
+		}
+		else
+		{
+			_themeName = ThemeService.DEFAULT_THEME;
+			_isDarkMode = true;
+		}
+		_theme = ThemeService.GetTheme(_themeName);
+	}
+
+	void DrawerToggle()
+	{
+		_drawerOpen = !_drawerOpen;
+
+	}
+
+	EventCallback UpdateStyle => EventCallback.Factory.Create(this, UpdateAlertStyle);
+
+	public async Task UpdateAlertStyle()
+	{
+		_theme = ThemeService.GetTheme();
+
+		ThemeDto theme = new()
+			{
+				DarkMode = _isDarkMode,
+				ThemeName = _themeName
+			};
+
+		await ProtectedLocalStorage.SetAsync(THEME_STORAGE_NAME, theme);
+	}
+}

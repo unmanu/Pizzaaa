@@ -18,7 +18,7 @@ internal class PizzaContext : DbContext
 	}
 
     public DbSet<Store> Stores { get; set; }
-    public DbSet<Models.Pizza> Pizzas { get; set; }
+    public DbSet<Pizza> Pizzas { get; set; }
     public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<User> Users { get; set; }
 

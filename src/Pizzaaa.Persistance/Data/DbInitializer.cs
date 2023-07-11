@@ -45,7 +45,7 @@ internal static class DbInitializer
 		context.Stores.Add(store);
 		context.SaveChanges();
 
-		Models.Pizza pizza = new()
+		Pizza pizza = new()
 		{
 			Name = "Milla",
 			Ingredients = { ingredient },

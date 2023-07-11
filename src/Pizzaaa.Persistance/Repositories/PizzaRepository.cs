@@ -18,12 +18,12 @@ internal class PizzaRepository
 		this._pizzaContext = pizzaContext;
 	}
 
-	public async Task<Models.Pizza?> GetById(long id)
+	public async Task<Pizza?> GetById(long id)
 	{
 		return await _pizzaContext.Pizzas.FirstOrDefaultAsync(x => x.PizzaId == id);
 	}
 
-	public async Task Insert(Models.Pizza pizza)
+	public async Task Insert(Pizza pizza)
 	{
 		await _pizzaContext.Pizzas.AddAsync(pizza);
 		await _pizzaContext.SaveChangesAsync();

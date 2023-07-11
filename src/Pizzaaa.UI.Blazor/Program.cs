@@ -21,6 +21,9 @@ builder.Configuration.GetSection(PersistanceSettingsOptions.PersistanceSettings)
 builder.Services.Configure<PersistanceSettingsOptions>(builder.Configuration.GetSection(PersistanceSettingsOptions.PersistanceSettings));
 builder.Services.AddPersistanceModule(persistanceSettingsOptions);
 
+builder.Services.AddAutoMapper(typeof(PersistanceMapperProfile));
+
+
 
 var app = builder.Build();
 

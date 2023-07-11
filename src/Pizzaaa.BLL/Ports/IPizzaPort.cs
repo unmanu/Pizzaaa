@@ -9,5 +9,5 @@ namespace Pizzaaa.BLL.Ports;
 
 public interface IPizzaPort
 {
-	Task Insert(Models.Pizza pizza);
+	Task Insert(Pizza pizza);
 }

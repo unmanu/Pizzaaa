@@ -18,5 +18,8 @@ public class PersistanceMapperProfile : Profile
 			.ForMember(dest => dest.StoreId, opt => opt.Ignore())
 			.ForMember(dest => dest.Store, opt => opt.Ignore())
 			.ForMember(dest => dest.Ingredients, opt => opt.Ignore());
-	}
+
+        CreateMap<Models.User, BLL.Models.User>();
+        CreateMap<BLL.Models.User, Models.User>();
+    }
 }

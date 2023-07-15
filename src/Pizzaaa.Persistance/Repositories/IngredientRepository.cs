@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pizzaaa.BLL.Security;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
 using System;
@@ -9,23 +10,15 @@ using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal class IngredientRepository
+internal class IngredientRepository : BaseRepository<Ingredient>
 {
-	private readonly PizzaContext _pizzaContext;
+    public IngredientRepository(PizzaContext pizzaContext, SecurityService securityService)
+    : base(pizzaContext, securityService)
+    {
+    }
 
-	public IngredientRepository(PizzaContext pizzaContext)
-	{
-		this._pizzaContext = pizzaContext;
-	}
-
-	public async Task<Ingredient?> GetById(long id)
-	{
-		return await _pizzaContext.Ingredients.FirstOrDefaultAsync(x => x.IngredientId == id);
-	}
-
-	public async Task Insert(Ingredient ingredient)
-	{
-		await _pizzaContext.Ingredients.AddAsync(ingredient);
-		await _pizzaContext.SaveChangesAsync();
-	}
+    protected override DbSet<Ingredient> GetSet()
+    {
+        return _pizzaContext.Ingredients;
+    }
 }

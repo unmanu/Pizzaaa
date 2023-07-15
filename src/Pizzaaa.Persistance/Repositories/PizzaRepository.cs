@@ -1,31 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Pizzaaa.BLL.Security;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal class PizzaRepository
+internal class PizzaRepository : BaseRepository<Pizza>
 {
-	private readonly PizzaContext _pizzaContext;
 
-	public PizzaRepository(PizzaContext pizzaContext)
+	public PizzaRepository(PizzaContext pizzaContext, SecurityService securityService)
+		: base(pizzaContext, securityService)
 	{
-		this._pizzaContext = pizzaContext;
-	}
+    }
 
-	public async Task<Pizza?> GetById(long id)
-	{
-		return await _pizzaContext.Pizzas.FirstOrDefaultAsync(x => x.PizzaId == id);
-	}
-
-	public async Task Insert(Pizza pizza)
-	{
-		await _pizzaContext.Pizzas.AddAsync(pizza);
-		await _pizzaContext.SaveChangesAsync();
-	}
+    protected override DbSet<Pizza> GetSet()
+    {
+		return _pizzaContext.Pizzas;
+    }
 }

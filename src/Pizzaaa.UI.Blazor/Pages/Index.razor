@@ -13,11 +13,17 @@ Welcome to your new app.
 
 <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Do">do</MudButton>
 
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Do2">do2</MudButton>
+
 @code{
 
 
     public async Task Do()
     {
         await PizzaService.Do();
+    }
+    public async Task Do2()
+    {
+        await PizzaService.Do2();
     }
 }

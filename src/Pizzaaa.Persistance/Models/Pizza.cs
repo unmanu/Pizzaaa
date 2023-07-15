@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Models;
 
-internal class Pizza
+internal class Pizza : AuditedEntity
 {
-	public int PizzaId { get; set; }
 
 	[MaxLength(200)]
 	public string? Name { get; set; }

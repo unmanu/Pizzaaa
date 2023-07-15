@@ -10,7 +10,7 @@ namespace Pizzaaa.BLL.Models;
 
 public class Pizza
 {
-	public int PizzaId { get; set; }
+	public int ID { get; set; }
 
 	public string? Name { get; set; }
 

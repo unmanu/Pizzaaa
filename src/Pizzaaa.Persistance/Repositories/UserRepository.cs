@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pizzaaa.BLL.Security;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
 using System;
@@ -9,23 +10,26 @@ using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal class UserRepository
+internal class UserRepository : BaseRepository<User>
 {
-	private readonly PizzaContext _pizzaContext;
 
-	public UserRepository(PizzaContext pizzaContext)
-	{
-		this._pizzaContext = pizzaContext;
-	}
+    public UserRepository(PizzaContext pizzaContext, SecurityService securityService)
+        : base(pizzaContext, securityService)
+    {
+    }
 
-	public async Task<User?> GetById(long id)
-	{
-		return await _pizzaContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
-	}
+    protected override DbSet<User> GetSet()
+    {
+        return _pizzaContext.Users;
+    }
 
-	public async Task Insert(User user)
-	{
-		await _pizzaContext.Users.AddAsync(user);
-		await _pizzaContext.SaveChangesAsync();
-	}
+    public async Task<User?> FindByUsername(string username)
+    {
+        return await GetSet().FirstOrDefaultAsync(x => x.Username == username);
+    }
+
+    public async Task UpdateLastAccess(int id)
+    {
+        await Update(id, x => x.LastAccess = DateTime.Now);
+    }
 }

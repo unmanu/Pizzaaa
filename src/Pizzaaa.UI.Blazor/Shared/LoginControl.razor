@@ -1,0 +1,77 @@
+﻿@page "/loginControl"
+
+@using System.Web;
+
+<AuthorizeView>
+    <Authorized>
+        <b>Hello, @context.User?.Identity?.Name!</b>
+        <MudIconButton Href="@($"/logout?returnUrl=/")"
+                       Icon="@Icons.Material.Filled.Logout" aria-label="logout"
+                       Target="_top" />
+    </Authorized>
+
+    <NotAuthorized>
+        <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="@ToggleOpen">Login</MudButton>
+        <MudPopover Open="@_isOpen" Fixed="true" Class="px-4 pt-4" AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
+            <MudContainer>
+                <MudStack>
+                    <MudTextField @bind-Value="Username" Label="User Name" Variant="Variant.Text"></MudTextField>
+                    <MudTextField @bind-Value="Password" Label="Password" Variant="Variant.Text"
+                                  InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+                                  OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+                    <MudButton Href="@($"/login?paramUsername={encode(Username)}&paramPassword={encode(Password)}")"
+                               Target="_top"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary">
+                        Login
+                    </MudButton>
+                    <br />
+                </MudStack>
+            </MudContainer>
+        </MudPopover>
+    </NotAuthorized>
+
+</AuthorizeView>
+
+@code {
+    string Username = "";
+    string Password = "";
+
+    string Url = "/login?paramUsername=@encode(@Username)&paramPassword=@encode(@Password)";
+
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+
+    public bool _isOpen;
+
+    public void ToggleOpen()
+    {
+        if (_isOpen)
+            _isOpen = false;
+        else
+            _isOpen = true;
+    }
+
+    private string encode(string param)
+    {
+        return HttpUtility.UrlEncode(param);
+    }
+
+    void ButtonTestclick()
+    {
+        @if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+}

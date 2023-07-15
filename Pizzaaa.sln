@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.BLL", "src\Pizzaaa.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.Persistance.Test", "test\Pizzaaa.Persistance.Test\Pizzaaa.Persistance.Test.csproj", "{F0FAF452-3EFC-46E5-A11B-63AFF7CA5191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaaa.IntegrationTest", "test\Pizzaaa.IntegrationTest\Pizzaaa.IntegrationTest.csproj", "{6997F832-0CC8-4D36-974F-F2DDF7B03BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.IntegrationTest", "test\Pizzaaa.IntegrationTest\Pizzaaa.IntegrationTest.csproj", "{6997F832-0CC8-4D36-974F-F2DDF7B03BEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

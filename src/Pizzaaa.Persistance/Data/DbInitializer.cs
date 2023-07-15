@@ -26,22 +26,27 @@ internal static class DbInitializer
 	{
 		Ingredient ingredient = new()
 		{
-			Name = "Fagiolo"
-		};
+			Name = "Fagiolo",
+            InsertUser = "system"
+        };
 		context.Ingredients.Add(ingredient);
 		context.SaveChanges();
 
 		User user = new()
 		{
-			Name = "Bombadil"
-		};
+			Username = "Bombadil",
+			Password = "password",
+			Salt = "Salt",
+            InsertUser = "system"
+        };
 		context.Users.Add(user);
 		context.SaveChanges();
 
 		Store store = new()
 		{
-			Name = "Ciacco"
-		};
+			Name = "Ciacco",
+            InsertUser = "system"
+        };
 		context.Stores.Add(store);
 		context.SaveChanges();
 
@@ -49,7 +54,8 @@ internal static class DbInitializer
 		{
 			Name = "Milla",
 			Ingredients = { ingredient },
-			Store = store
+			Store = store,
+			InsertUser = "system"
 		};
 		context.Pizzas.Add(pizza);
 		context.SaveChanges();

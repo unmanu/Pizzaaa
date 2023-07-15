@@ -10,33 +10,37 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
-	<MudAppBar>
-		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-		Pizzaaa
-		<MudSpacer />
-		<MudSwitch Checked=_isDarkMode
-				   ThumbIcon="@(_isDarkMode==true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
-				   ThumbIconColor="@(_isDarkMode==true ? Color.Primary : Color.Secondary)"
-				   Class="ma-4" T="bool" CheckedChanged=HandleCheck />
-
-	</MudAppBar>
-	<MudDrawer @bind-Open="@_drawerOpen">
-		<MyNavMenu />
-	</MudDrawer>
-	<MudMainContent>
-		<MudContainer MaxWidth="MaxWidth.Medium">
-			<CascadingValue Value=UpdateStyle>
-				@Body
-			</CascadingValue>
-		</MudContainer>
-	</MudMainContent>
-</MudLayout>
+<CascadingAuthenticationState>
+	<MudLayout>
+		<MudAppBar>
+			<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+			Pizzaaa
+			<MudSpacer />
+			<LoginControl />
+			<MudSwitch Checked=_isDarkMode
+					   ThumbIcon="@(_isDarkMode==true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
+					   ThumbIconColor="@(_isDarkMode==true ? Color.Primary : Color.Secondary)"
+					   Class="ma-4" T="bool" CheckedChanged=HandleCheck />
+		</MudAppBar>
+		<MudDrawer @bind-Open="@_drawerOpen">
+			<MyNavMenu />
+		</MudDrawer>
+		<MudMainContent>
+			<MudContainer MaxWidth="MaxWidth.Medium">
+				<CustomErrorBoundary>
+					<CascadingValue Value=UpdateStyle>
+						@Body
+					</CascadingValue>
+				</CustomErrorBoundary>
+			</MudContainer>
+		</MudMainContent>
+	</MudLayout>
+</CascadingAuthenticationState>
 
 @code {
-	bool _drawerOpen = true;
-	private MudTheme _theme = new();
+	private bool _drawerOpen = true;
 	private bool _isDarkMode;
+	private MudTheme _theme = new();
 	private string _themeName = "";
 	private const string THEME_STORAGE_NAME = "theme";
 

@@ -12,7 +12,10 @@ internal class Ingredient : AuditedEntity
 {
 
 	[MaxLength(200)]
-	public string? Name { get; set; }
+	public string Name { get; set; } = default!;
 
-	public List<Pizza> Pizzas { get; } = new();
+    [MaxLength(50)]
+    public string Type { get; set; } = default!;
+
+    public List<Pizza> Pizzas { get; } = new();
 }

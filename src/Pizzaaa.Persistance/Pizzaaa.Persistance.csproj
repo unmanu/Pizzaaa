@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Repositories\BaseRepository.cs~RF5d58bc7.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Pizzaaa.BLL\Pizzaaa.BLL.csproj" />
   </ItemGroup>
 

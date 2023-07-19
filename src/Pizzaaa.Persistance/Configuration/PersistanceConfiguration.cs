@@ -31,7 +31,7 @@ public static class PersistanceConfiguration
 				context.Database.EnsureDeleted();
 			}
 			context.Database.EnsureCreated();
-			DbInitializer.Initialize(context);
+			DbInitializer.Initialize(context, settings.JsonSourceInitializer);
 		}
 		return host;
 	}
@@ -42,11 +42,19 @@ public static class PersistanceConfiguration
 
 		services.AddScoped<IPizzaPort, DbPizzaAdapter>();
 		services.AddScoped<IUserPort, DbUserAdapter>();
+		services.AddScoped<IStorePort, DbStoreAdapter>();
+		services.AddScoped<IIngredientPort, DbIngredientAdapter>();
+		services.AddScoped<IUserPizzaPreferencePort, DbUserPizzaPreferenceAdapter>();
+		services.AddScoped<ISecurityPort, DbSecurityAdapter>();
+		services.AddScoped<IOrderPort, DbOrderAdapters>();
 
-		services.AddScoped<IngredientRepository>();
+        services.AddScoped<IngredientRepository>();
 		services.AddScoped<PizzaRepository>();
 		services.AddScoped<StoreRepository>();
 		services.AddScoped<UserRepository>();
+		services.AddScoped<SecurityRepository>();
+		services.AddScoped<UserPizzaPreferenceRepository>();
+		services.AddScoped<OrderRepository>();
 
 		return services;
 	}

@@ -34,10 +34,5 @@ internal class DbUserAdapter : IUserPort
         await _userRepository.Insert(userEntity);
         return _mapper.Map<BLL.Models.User>(userEntity);
     }
-
-    public async Task UpdateLastAccess(int id)
-    {
-        await _userRepository.UpdateLastAccess(id);
-    }
     
 }

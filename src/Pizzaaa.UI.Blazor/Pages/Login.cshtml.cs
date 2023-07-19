@@ -5,17 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using Pizzaaa.BLL.Services;
+using Pizzaaa.BLL.Security;
 
 namespace Pizzaaa.Pages;
 
 [AllowAnonymous]
 public class LoginModel : PageModel
 {
-    public readonly UserService _userService;
+    public readonly SecurityService _securityService;
 
-    public LoginModel(UserService userService)
+    public LoginModel(SecurityService securityService)
     {
-        this._userService = userService;
+        this._securityService = securityService;
     }
 
     public string? ReturnUrl { get; set; }
@@ -31,7 +32,7 @@ public class LoginModel : PageModel
         catch { }
 
 
-        await _userService.LoginOrRegister(paramUsername, paramPassword);
+        await _securityService.LoginOrRegister(paramUsername, paramPassword);
 
         var claims = new List<Claim>
         {

@@ -9,5 +9,7 @@ namespace Pizzaaa.BLL.Ports;
 
 public interface IPizzaPort
 {
-	Task Insert(Pizza pizza);
+    Task<List<Pizza>> FindAllByStore(int storeId);
+
+    Task Insert(Pizza pizza);
 }

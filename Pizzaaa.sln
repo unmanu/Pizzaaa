@@ -17,6 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.Persistance.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.IntegrationTest", "test\Pizzaaa.IntegrationTest\Pizzaaa.IntegrationTest.csproj", "{6997F832-0CC8-4D36-974F-F2DDF7B03BEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{B0E34671-772A-40BA-B002-6C27EC4F308C}"
+	ProjectSection(SolutionItems) = preProject
+		resources\Pizzas.json = resources\Pizzas.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

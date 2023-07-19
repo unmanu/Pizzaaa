@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Pizzaaa.Persistance.Repositories;
 
@@ -24,5 +25,14 @@ internal class PizzaRepository : BaseRepository<Pizza>
     protected override DbSet<Pizza> GetSet()
     {
 		return _pizzaContext.Pizzas;
+    }
+
+
+    public async Task<List<Pizza>> FindAllByStore(int storeId)
+    {
+        return await GetSet()
+            .Include(x => x.Ingredients)
+            .Where(x => x.StoreId == storeId)
+            .ToListAsync();
     }
 }

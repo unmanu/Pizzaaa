@@ -6,6 +6,7 @@ using Pizzaaa.Persistance.Configuration;
 using Pizzaaa.BLL.Configuration;
 using Pizzaaa.UI.Blazor.Data;
 using Pizzaaa.UI.Blazor.Data.Theme;
+using MudExtensions.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<ThemeService>();
 builder.Services.AddMudServices();
+builder.Services.AddMudExtensions();
 builder.Services.AddAuthentication("Cookies").AddCookie();
 
 PersistanceSettingsOptions persistanceSettingsOptions = new();

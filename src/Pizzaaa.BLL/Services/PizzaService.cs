@@ -22,17 +22,8 @@ public class PizzaService
 		this._securityService = securityService;
     }
 
-	public async Task Do()
+	public async Task<List<Pizza>> FindAllByStore(int storeId)
 	{
-		await _pizzaPort.Insert(new ()
-		{
-			Name = "Pizzone"
-		});
-    }
-
-    public async Task Do2()
-    {
-		User user = _securityService.GetLoggedUser();
-        await _userPort.UpdateLastAccess(user.ID);
+		return await _pizzaPort.FindAllByStore(storeId);
     }
 }

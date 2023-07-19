@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Pizzaaa.BLL.Models;
+using Pizzaaa.BLL.Ports;
 using Pizzaaa.BLL.Utils;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,54 @@ public class SecurityService
     private HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;
 
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly User _user;
+    private readonly ISecurityPort _securityPort;
+    private User? _user;
 
-    public SecurityService(IHttpContextAccessor httpContextAccessor)
+    public SecurityService(IHttpContextAccessor httpContextAccessor, ISecurityPort securityPort)
     {
         this._httpContextAccessor = httpContextAccessor;
-        var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
-        string username = claimsPrincipal?.Identity?.Name ?? "Unknown";
-        _user = new User()
+        this._securityPort = securityPort;
+    }
+
+
+    public async Task LoginOrRegister(string username, string password)
+    {
+        User? user = await _securityPort.FindByUsername(username);
+        if (user == null)
+        {
+            await InsertNewUser(username, password);
+        }
+        else
+        {
+            await CheckPassword(username, password, user);
+        }
+        await UpdateLoggedUser(username);
+    }
+
+    private async Task InsertNewUser(string username, string password)
+    {
+        string passwordHashed = HashPassword(password, out string salt);
+        User user = new()
         {
             Username = username,
-            ID = 1 // TODO fixme
+            Password = passwordHashed,
+            Salt = salt
         };
+        User insertedUser = await _securityPort.Insert(user);
+        await _securityPort.UpdateLastAccess(insertedUser.ID);
+    }
+
+    private async Task CheckPassword(string username, string password, User user)
+    {
+        if (VerifyPassword(password, user.Password, user.Salt))
+        {
+            //TODO cool
+            await _securityPort.UpdateLastAccess(user.ID);
+        }
+        else
+        {
+            throw new NotImplementedException("TODO wrong password");//TODO
+        }
     }
 
     public string HashPassword(string password, out string hexSalt)
@@ -52,8 +89,46 @@ public class SecurityService
         return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
     }
 
+    public async Task UpdateLoggedUser(string? username = null)
+    {
+        if (username == null)
+        {
+            var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
+            username = claimsPrincipal?.Identity?.Name ?? "Unknown";
+        }
+        User? user = await _securityPort.FindByUsername(username);
+        if (user != null)
+        {
+            _user = user;
+        }
+        else
+        {
+            _user = new User()
+            {
+                ID = 0,
+                Username = username
+            };
+        }
+    }
+
     public User GetLoggedUser()
     {
-        return _user;
+        return _user!;
+    }
+
+    public string GetLoggedUsername()
+    {
+        return _user?.Username ?? "Unknown";
+    }
+
+    public int GetLoggedId()
+    {
+        return _user?.ID ?? 0;
+    }
+
+    public bool IsUserLogged()
+    {
+        var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
+        return claimsPrincipal?.Identity?.Name != null;
     }
 }

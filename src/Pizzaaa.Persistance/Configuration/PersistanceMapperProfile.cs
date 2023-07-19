@@ -16,10 +16,22 @@ public class PersistanceMapperProfile : Profile
 		CreateMap<Models.Pizza, BLL.Models.Pizza>();
 		CreateMap<BLL.Models.Pizza, Models.Pizza>()
 			.ForMember(dest => dest.StoreId, opt => opt.Ignore())
-			.ForMember(dest => dest.Store, opt => opt.Ignore())
-			.ForMember(dest => dest.Ingredients, opt => opt.Ignore());
+			.ForMember(dest => dest.Store, opt => opt.Ignore());
 
         CreateMap<Models.User, BLL.Models.User>();
         CreateMap<BLL.Models.User, Models.User>();
+
+        CreateMap<Models.Store, BLL.Models.Store>();
+        CreateMap<BLL.Models.Store, Models.Store>();
+
+        CreateMap<Models.Ingredient, BLL.Models.Ingredient>();
+        CreateMap<BLL.Models.Ingredient, Models.Ingredient>()
+            .ForMember(dest => dest.Pizzas, opt => opt.Ignore());
+
+        CreateMap<Models.UserPizzaPreference, BLL.Models.UserPizzaPreference>();
+        CreateMap<BLL.Models.UserPizzaPreference, Models.UserPizzaPreference>();
+
+        CreateMap<Models.Order, BLL.Models.Order>();
+        CreateMap<BLL.Models.Order, Models.Order>();
     }
 }

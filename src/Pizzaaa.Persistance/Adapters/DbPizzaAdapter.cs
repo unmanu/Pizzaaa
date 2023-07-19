@@ -25,7 +25,14 @@ internal class DbPizzaAdapter : IPizzaPort
 
 	}
 
-	public async Task Insert(BLL.Models.Pizza pizza)
+    public async Task<List<BLL.Models.Pizza>> FindAllByStore(int storeId)
+    {
+        List<Pizza> pizzas = await _pizzaRepository.FindAllByStore(storeId);
+
+        return _mapper.Map<List<BLL.Models.Pizza>>(pizzas);
+    }
+
+    public async Task Insert(BLL.Models.Pizza pizza)
 	{
 		Models.Pizza entity = _mapper.Map<Models.Pizza>(pizza);
         Store? store = await _storeRepository.FindById(1);

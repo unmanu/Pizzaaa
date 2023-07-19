@@ -1,11 +1,13 @@
 ﻿@inherits LayoutComponentBase
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Pizzaaa.BLL.Security;
 @using Pizzaaa.UI.Blazor.Data.Theme;
 
 @inject ThemeService ThemeService
+@inject SecurityService SecurityService
 @inject ProtectedLocalStorage ProtectedLocalStorage
 
-<PageTitle>Pizzaaa.UI.Blazor</PageTitle>
+<PageTitle>Pizzaaa</PageTitle>
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -26,13 +28,11 @@
 			<MyNavMenu />
 		</MudDrawer>
 		<MudMainContent>
-			<MudContainer MaxWidth="MaxWidth.Medium">
 				<CustomErrorBoundary>
 					<CascadingValue Value=UpdateStyle>
 						@Body
 					</CascadingValue>
 				</CustomErrorBoundary>
-			</MudContainer>
 		</MudMainContent>
 	</MudLayout>
 </CascadingAuthenticationState>
@@ -75,6 +75,7 @@
 			_isDarkMode = true;
 		}
 		_theme = ThemeService.GetTheme(_themeName);
+		await SecurityService.UpdateLoggedUser();
 	}
 
 	void DrawerToggle()

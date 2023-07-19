@@ -21,6 +21,8 @@ internal class PizzaContext : DbContext
     public DbSet<Pizza> Pizzas { get; set; }
     public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<UserPizzaPreference> UserPizzaPreferences { get; set; }
+    public DbSet<Order> Orders { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

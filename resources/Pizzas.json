@@ -1,0 +1,1666 @@
+{
+  "Pizzas": [
+    {
+      "Shop": "Canton",
+      "Name": "Schiacciata",
+      "Ingredients": [
+        "olio",
+        "rosmarino",
+        "Base pizza"
+      ],
+      "Price": 2.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Marinara",
+      "Ingredients": [
+        "pomodoro",
+        "aglio",
+        "origano",
+        "olio"
+      ],
+      "Price": 3.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Margherita",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella"
+      ],
+      "Price": 4.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Cotto",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "mozzarella"
+      ],
+      "Price": 5.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Wurstel",
+      "Ingredients": [
+        "pomodoro",
+        "wurstel",
+        "mozzarella"
+      ],
+      "Price": 5.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Salamino piccante",
+      "Ingredients": [
+        "pomodoro",
+        "salamino piccante",
+        "mozzarella"
+      ],
+      "Price": 5.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Speck",
+      "Ingredients": [
+        "pomodoro",
+        "speck",
+        "mozzarella"
+      ],
+      "Price": 5.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Lardo",
+      "Ingredients": [
+        "pomodoro",
+        "lardo",
+        "mozzarella"
+      ],
+      "Price": 5.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Salsiccia",
+      "Ingredients": [
+        "pomodoro",
+        "salsiccia dolce",
+        "mozzarella"
+      ],
+      "Price": 5.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Patate",
+      "Ingredients": [
+        "pomodoro",
+        "patate",
+        "rosmarino",
+        "mozzarella"
+      ],
+      "Price": 5.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Pancetta e rosmarino",
+      "Ingredients": [
+        "pomodoro",
+        "pancetta arrotolata",
+        "rosmarino",
+        "mozzarella"
+      ],
+      "Price": 6.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Zucchine",
+      "Ingredients": [
+        "pomodoro",
+        "zucchine",
+        "mozzarella"
+      ],
+      "Price": 5.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Viennese",
+      "Ingredients": [
+        "pomodoro",
+        "wurstel",
+        "patatine fritte",
+        "mozzarella"
+      ],
+      "Price": 6.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Romana",
+      "Ingredients": [
+        "pomodoro",
+        "origano",
+        "acciughe",
+        "mozzarella"
+      ],
+      "Price": 6.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Prosciutto e funghi",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "funghi",
+        "mozzarella"
+      ],
+      "Price": 6.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Tonno e cipolla",
+      "Ingredients": [
+        "pomodoro",
+        "cipolla rossa",
+        "tonno",
+        "mozzarella"
+      ],
+      "Price": 6.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Boscaiola",
+      "Ingredients": [
+        "pomodoro",
+        "funghi misti",
+        "mozzarella"
+      ],
+      "Price": 6.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Parmigiana",
+      "Ingredients": [
+        "pomodoro",
+        "melanzane",
+        "grana",
+        "mozzarella"
+      ],
+      "Price": 6.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Spinaci",
+      "Ingredients": [
+        "pomodoro",
+        "spinaci",
+        "ricotta",
+        "mozzarella"
+      ],
+      "Price": 6.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Estate",
+      "Ingredients": [
+        "pomodoro",
+        "rucola",
+        "pomodorini",
+        "mozzarella"
+      ],
+      "Price": 6.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Crudo",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto crudo",
+        "mozzarella"
+      ],
+      "Price": 6.7
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Bresaola",
+      "Ingredients": [
+        "pomodoro",
+        "bresaola",
+        "mozzarella"
+      ],
+      "Price": 6.7
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Veneta",
+      "Ingredients": [
+        "pomodoro",
+        "salsiccia dolce",
+        "patate",
+        "mozzarella"
+      ],
+      "Price": 6.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Fortuna",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "asparagi",
+        "grana",
+        "mozzarella"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Virgilio",
+      "Ingredients": [
+        "pomodoro",
+        "salsiccia dolce",
+        "cipolla rossa",
+        "origano",
+        "mozzarella"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Calzone classico",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "funghi",
+        "grana",
+        "mozzarella"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Calzone ai formaggi",
+      "Ingredients": [
+        "pomodoro",
+        "grana",
+        "scamorza",
+        "ricotta",
+        "mozzarella"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Calzone alle verdure",
+      "Ingredients": [
+        "pomodoro",
+        "zucchine",
+        "melanzane",
+        "peperoni",
+        "mozzarella"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Gustosa",
+      "Ingredients": [
+        "pomodoro",
+        "pancetta arrotolata",
+        "grana",
+        "rosmarino",
+        "mozzarella"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Regina",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "grana",
+        "ricotta",
+        "mozzarella"
+      ],
+      "Price": 6.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Quattro formaggi",
+      "Ingredients": [
+        "pomodoro",
+        "formaggi misti",
+        "mozzarella"
+      ],
+      "Price": 6.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Bufala",
+      "Ingredients": [
+        "pomodoro",
+        "pomodorini",
+        "mozzarella di bufala",
+        "origano",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Gamberetti",
+      "Ingredients": [
+        "pomodoro",
+        "zucchine",
+        "gamberetti",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Capricciosa",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "funghi",
+        "carciofi",
+        "olive nere",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Delicata",
+      "Ingredients": [
+        "pomodoro",
+        "zucchine",
+        "pomodorini",
+        "stracchino",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Quattro stagioni",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "salamino piccante",
+        "funghi",
+        "carciofi",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Diavola",
+      "Ingredients": [
+        "pomodoro",
+        "salamino piccante",
+        "cipolla rossa",
+        "peperoni",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Principe",
+      "Ingredients": [
+        "pomodoro",
+        "speck",
+        "funghi misti",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Vegetariana",
+      "Ingredients": [
+        "pomodoro",
+        "zucchine",
+        "melanzane",
+        "peperoni",
+        "radicchio",
+        "grana",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Stuzzicosa",
+      "Ingredients": [
+        "pomodoro",
+        "pancetta arrotolata",
+        "porcini",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Porri",
+      "Ingredients": [
+        "pomodoro",
+        "salsiccia dolce",
+        "porri",
+        "pepe",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Tris",
+      "Ingredients": [
+        "pomodoro",
+        "lardo",
+        "radicchio",
+        "gorgonzola",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Nocina",
+      "Ingredients": [
+        "pomodoro",
+        "speck",
+        "mascarpone",
+        "noci",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Lisella",
+      "Ingredients": [
+        "pomodoro",
+        "salamino piccante",
+        "patate",
+        "stracchino",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Marco",
+      "Ingredients": [
+        "pomodoro",
+        "pancetta affumicata",
+        "funghi misti",
+        "scamorza",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Inverno",
+      "Ingredients": [
+        "pomodoro",
+        "salamino piccante",
+        "cipolla rossa",
+        "gorgonzola",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Rustica",
+      "Ingredients": [
+        "pomodoro",
+        "speck",
+        "patate",
+        "gorgonzola",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Carbonara",
+      "Ingredients": [
+        "pomodoro",
+        "pancetta affumicata",
+        "grana",
+        "uovo",
+        "mozzarella"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Preziosa",
+      "Ingredients": [
+        "pomodoro",
+        "speck",
+        "porcini",
+        "scamorza",
+        "mozzarella"
+      ],
+      "Price": 8.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Trentina",
+      "Ingredients": [
+        "pomodoro",
+        "speck",
+        "porcini",
+        "gorgonzola",
+        "mozzarella"
+      ],
+      "Price": 8.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Montanara",
+      "Ingredients": [
+        "pomodoro",
+        "bresaola",
+        "funghi misti",
+        "rucola",
+        "grana",
+        "mozzarella"
+      ],
+      "Price": 8.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Maialina",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "salamino piccante",
+        "wurstel",
+        "salsiccia dolce",
+        "pancetta arrotolata",
+        "mozzarella"
+      ],
+      "Price": 8.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Anna",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "salamino piccante",
+        "wurstel",
+        "funghi",
+        "cipolla rossa",
+        "grana",
+        "mozzarella"
+      ],
+      "Price": 8.3
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Mauri",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto cotto",
+        "salamino piccante",
+        "funghi",
+        "peperoni",
+        "olive",
+        "capperi",
+        "gorgonzola",
+        "mozzarella"
+      ],
+      "Price": 8.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Mitica",
+      "Ingredients": [
+        "pomodoro",
+        "funghi misti",
+        "radicchio",
+        "monte veronese",
+        "mozzarella"
+      ],
+      "Price": 8.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Salvatore",
+      "Ingredients": [
+        "pomodoro",
+        "salsiccia dolce",
+        "cipolla rossa",
+        "peperoni",
+        "gorgonzola",
+        "olio piccante",
+        "mozzarella"
+      ],
+      "Price": 8.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Primavera",
+      "Ingredients": [
+        "pomodorini",
+        "mozzarella di bufala",
+        "origano",
+        "mozzarella"
+      ],
+      "Price": 6.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Biancaneve",
+      "Ingredients": [
+        "rucola",
+        "philadelphia",
+        "mozzarella"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Irene",
+      "Ingredients": [
+        "mozzarella",
+        "gamberetti",
+        "salsa rosa"
+      ],
+      "Price": 7.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Gratinata",
+      "Ingredients": [
+        "mozzarella",
+        "zucchine",
+        "stracchino",
+        "gratinato"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Italia",
+      "Ingredients": [
+        "mozzarella",
+        "bresaola",
+        "rucola",
+        "grana"
+      ],
+      "Price": 7.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Autunno",
+      "Ingredients": [
+        "mozzarella",
+        "salsiccia dolce",
+        "gorgonzola",
+        "zucca"
+      ],
+      "Price": 8.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Campana",
+      "Ingredients": [
+        "mozzarella",
+        "friarielli",
+        "gorgonzola",
+        "lardo"
+      ],
+      "Price": 8.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Saporita",
+      "Ingredients": [
+        "mozzarella",
+        "mozzarella di bufala",
+        "salsiccia dolce",
+        "friarelli",
+        "scamorza"
+      ],
+      "Price": 8.8
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Corraggiosa",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "pomodorini secchi",
+        "fagioli rossi",
+        "olive",
+        "cipolla rossa",
+        "gorgonzola",
+        "salamino piccante",
+        "olio piccante"
+      ],
+      "Price": 9.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "La pugliese",
+      "Ingredients": [
+        "pomodoro",
+        "prosciutto crudo",
+        "burratina pugliese",
+        "basilico"
+      ],
+      "Price": 9.0
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Mortadella",
+      "Ingredients": [
+        "mozzarella",
+        "mortadella",
+        "burratina pugliese",
+        "granella di pistacchio"
+      ],
+      "Price": 9.5
+    },
+    {
+      "Shop": "Canton",
+      "Name": "Rivisitata",
+      "Ingredients": [
+        "mozzarella",
+        "cipolla caramellata",
+        "tonno",
+        "burratina pugliese",
+        "pepe rosa"
+      ],
+      "Price": 9.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Margherita",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella"
+      ],
+      "Price": 4.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Marinara",
+      "Ingredients": [
+        "pomodoro",
+        "aglio",
+        "origano"
+      ],
+      "Price": 4
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Schiacciata",
+      "Ingredients": [
+        "olio",
+        "sale",
+        "rosmarino"
+      ],
+      "Price": 3.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Romana",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "acciughe",
+        "origano"
+      ],
+      "Price": 5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Prosciutto e funghi",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "prosciutto cotto",
+        "funghi"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Tonno e cipolla",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "tonno",
+        "cipolla rossa"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Ricotta e spinaci",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "ricotta",
+        "spinaci"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Capricciosa",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "prosciutto cotto",
+        "funghi",
+        "carciofi",
+        "capperi",
+        "olive greche"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Quattro stagioni",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "prosciutto cotto",
+        "funghi",
+        "carciofi",
+        "olive greche"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Quattro formaggi",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "gorgonzola",
+        "asiago",
+        "grana"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Parmigiana",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "melanzane",
+        "grana"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Boscaiola",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "funghi misti",
+        "grana"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Vegetariana",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "verdure miste",
+        "grana"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Trevigiana",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "radicchio",
+        "salsiccia dolce",
+        "grana"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Estate",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "pomodorini",
+        "basilico"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Autunno",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "radicchio",
+        "gorgonzola",
+        "noci"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Carbonara",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "pancetta affumicata",
+        "uovo",
+        "grana",
+        "pepe"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Gorgonzola, noci, speck",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "gorgonzola",
+        "noci",
+        "speck"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Mascarpone, noci, crudo",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "mascarpone",
+        "noci",
+        "prosciutto crudo"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Calzone",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "funghi"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Calzone speciale",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "ricotta",
+        "salamino piccante",
+        "salsiccia dolce"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Inferno",
+      "Ingredients": [
+        "pomodoro",
+        "capperi",
+        "acciughe",
+        "peperoni",
+        "salamino piccante",
+        "olive greche",
+        "origano"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Purgatorio",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "salsiccia dolce",
+        "patate",
+        "cipolla rossa",
+        "gorgonzola"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Calzone ai formaggi",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "prosciutto cotto",
+        "asiago",
+        "ricotta",
+        "pomodoro"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Calzone vegetariano",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "verdure miste",
+        "grana"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Cerbero",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "philadelphia",
+        "peperoni",
+        "salsiccia dolce"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Golosa",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "spinaci",
+        "gorgonzola",
+        "salsiccia",
+        "grana"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Casareccia",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "patate",
+        "philadelphia",
+        "pancetta arrotolata"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Ghiotta",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "salamino piccante",
+        "gorgonzola",
+        "olive greche",
+        "pancetta arrotolata"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Ciacco",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "prosciutto cotto",
+        "wurstel",
+        "salamino piccante",
+        "salsiccia dolce",
+        "pancetta arrotolata"
+      ],
+      "Price": 8
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Altopiano",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "asiago",
+        "funghi misti",
+        "speck"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Canova",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "patate",
+        "scamorza",
+        "pancetta affumicata"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Affumicata",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "radicchio",
+        "speck",
+        "scamorza"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Enea",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "tonno",
+        "pomodorini",
+        "capperi",
+        "scamorza",
+        "origano"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Italo",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "salamino piccante",
+        "stracchino",
+        "rucola",
+        "songino"
+      ],
+      "Price": 6.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Salomone",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "mascarpone",
+        "salmone affumicato",
+        "prezzemolo"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Ulisse",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "gamberetti",
+        "pomodorini",
+        "zucchine",
+        "prezzemolo"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Divina",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "bresaola",
+        "rucola",
+        "songino",
+        "grana"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Caronte",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "gorgonzola",
+        "cipolla rossa",
+        "soppressa dolce"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Minosse",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "melanzane",
+        "prosciutto cotto",
+        "salsiccia dolce",
+        "gorgonzola",
+        "speck"
+      ],
+      "Price": 8
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Piccarda",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella",
+        "pomodorini",
+        "ricotta",
+        "olive taggiasche",
+        "salamino piccante",
+        "rucola"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Stige",
+      "Ingredients": [
+        "pomodoro",
+        "mozzarella di bufala",
+        "peperoni",
+        "olive taggiasche",
+        "salamino piccante",
+        "cipolla rossa"
+      ],
+      "Price": 7.5
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Beatrice",
+      "Ingredients": [
+        "crema di nocciole",
+        "scaglie di cocco",
+        "nocciole tritate",
+        "mascarpone"
+      ],
+      "Price": 6
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Virgilio",
+      "Ingredients": [
+        "mozzarella",
+        "stracchino",
+        "zucchine",
+        "porcini"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Paradiso",
+      "Ingredients": [
+        "mozzarella",
+        "mozzarella di bufala",
+        "prosciutto crudo",
+        "basilico"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Salsiccia e friarielli",
+      "Ingredients": [
+        "mozzarella",
+        "friarielli",
+        "salsiccia",
+        "asiago"
+      ],
+      "Price": 7
+    },
+    {
+      "Shop": "Ciacco",
+      "Name": "Circe",
+      "Ingredients": [
+        "mozzarella",
+        "porcini",
+        "gamberetti",
+        "philadelphia",
+        "rucola"
+      ],
+      "Price": 8
+    }
+  ],
+  "Ingredients": [
+    {
+      "Name": "olio",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "pomodoro",
+      "Type": "Base"
+    },
+    {
+      "Name": "pomodorini",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "rucola",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "mozzarella",
+      "Type": "Base"
+    },
+    {
+      "Name": "rosmarino",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "aglio",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "prosciutto cotto",
+      "Type": "Meat"
+    },
+    {
+      "Name": "wurstel",
+      "Type": "Meat"
+    },
+    {
+      "Name": "salamino piccante",
+      "Type": "Meat"
+    },
+    {
+      "Name": "speck",
+      "Type": "Meat"
+    },
+    {
+      "Name": "lardo",
+      "Type": "Meat"
+    },
+    {
+      "Name": "salsiccia dolce",
+      "Type": "Meat"
+    },
+    {
+      "Name": "patate",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "pancetta arrotolata",
+      "Type": "Meat"
+    },
+    {
+      "Name": "zucchine",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "origano",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "cipolla rossa",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "funghi misti",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "melanzane",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "spinaci",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "prosciutto crudo",
+      "Type": "Meat"
+    },
+    {
+      "Name": "bresaola",
+      "Type": "Meat"
+    },
+    {
+      "Name": "grana",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "formaggi misti",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "pancetta affumicata",
+      "Type": "Meat"
+    },
+    {
+      "Name": "mozzarella di bufala",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "philadelphia",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "gamberetti",
+      "Type": "Fish"
+    },
+    {
+      "Name": "friarielli",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "mortadella",
+      "Type": "Meat"
+    },
+    {
+      "Name": "cipolla caramellata",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "Base pizza",
+      "Type": "Base"
+    },
+    {
+      "Name": "patatine fritte",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "acciughe",
+      "Type": "Fish"
+    },
+    {
+      "Name": "funghi",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "tonno",
+      "Type": "Fish"
+    },
+    {
+      "Name": "ricotta",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "asparagi",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "scamorza",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "porcini",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "porri",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "radicchio",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "mascarpone",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "salsa rosa",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "stracchino",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "gorgonzola",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "pomodorini secchi",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "burratina pugliese",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "peperoni",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "carciofi",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "pepe",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "noci",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "uovo",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "monte veronese",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "gratinato",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "zucca",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "fagioli rossi",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "basilico",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "granella di pistacchio",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "olive nere",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "olive",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "pepe rosa",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "olio piccante",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "capperi",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "sale",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "prezzemolo",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "crema di nocciole",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "nocciole tritate",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "scaglie di cocco",
+      "Type": "Z_Adds"
+    },
+    {
+      "Name": "olive greche",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "olive taggiasche",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "verdure miste",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "songino",
+      "Type": "Vegetable"
+    },
+    {
+      "Name": "asiago",
+      "Type": "Cheese"
+    },
+    {
+      "Name": "salsiccia",
+      "Type": "Meat"
+    },
+    {
+      "Name": "soppressa dolce",
+      "Type": "Meat"
+    },
+    {
+      "Name": "salmone affumicato",
+      "Type": "Fish"
+    }
+  ]
+}

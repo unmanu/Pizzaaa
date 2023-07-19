@@ -19,8 +19,9 @@ public class PersistanceSettingsOptions
 	public bool CreateDatabaseIfNotExists { get; set; } = default!;
 	public bool RecreateDatabase { get; set; } = default!;
 	public bool SqliteInAppFolder { get; set; } = default!;
+    public string? JsonSourceInitializer { get; set; }
 
-	public PersistanceType GetEnumTipoDatabase()
+    public PersistanceType GetEnumTipoDatabase()
 	{
 		return (PersistanceType?.ToLower()) switch
 		{

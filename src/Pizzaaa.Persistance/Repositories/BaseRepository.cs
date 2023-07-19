@@ -31,6 +31,11 @@ internal abstract class BaseRepository<T> where T : BaseEntity
         return await GetSet().FirstOrDefaultAsync(x => x.ID == id);
     }
 
+    public async Task<List<T>> FindAll()
+    {
+        return await GetSet().ToListAsync();
+    }
+
     public async Task Insert(T entity)
 	{
 		if (entity is AuditedEntity auditedEntity) {
@@ -41,12 +46,22 @@ internal abstract class BaseRepository<T> where T : BaseEntity
 		await _pizzaContext.SaveChangesAsync();
     }
 
-    protected async Task<T?> Update(T entity, Action<T> updateFields)
+    public async Task Delete(T entity)
+    {
+        T? toDelete = await FindById(entity.ID);
+        if (toDelete != null)
+        {
+            GetSet().Remove(toDelete);
+            await _pizzaContext.SaveChangesAsync();
+        }
+    }
+
+    public async Task<T?> Update(T entity, Action<T> updateFields)
     {
         return await Update(entity.ID, updateFields);
     }
 
-    protected async Task<T?> Update(int id, Action<T> updateFields)
+    public async Task<T?> Update(int id, Action<T> updateFields)
     {
         T? toBeUpdated = await FindById(id);
         if (toBeUpdated == null)

@@ -18,7 +18,10 @@ public static class BllConfiguration
         services.AddScoped<SecurityService>();
 
         services.AddScoped<PizzaService>();
-        services.AddScoped<UserService>();
+        services.AddScoped<StoreService>();
+        services.AddScoped<IngredientService>();
+        services.AddScoped<UserPizzaPreferenceService>();
+        services.AddScoped<OrderService>();
 
         return services;
     }

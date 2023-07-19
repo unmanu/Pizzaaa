@@ -1,0 +1,396 @@
+@page "/pizza"
+@using MudExtensions.Enums;
+@using Pizzaaa.BLL.Models;
+@using Pizzaaa.BLL.Security;
+@using Pizzaaa.BLL.Services;
+@using System.Globalization;
+@inject StoreService StoreService
+@inject PizzaService PizzaService
+@inject UserPizzaPreferenceService UserPizzaPreferenceService
+@inject SecurityService SecurityService
+@inject OrderService OrderService
+@inject IngredientService IngredientService
+
+<MudPaper Elevation="0" Style="overflow:hidden; position:relative;">
+	<MudDrawerContainer Class="mud-height-full">
+		<MudDrawer @bind-Open="@openEnd" Width="300px" Fixed="false" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Persistent">
+			<MudDrawerHeader>
+				<MudText Typo="Typo.h6">
+					Ordine
+					<button onclick="navigator.clipboard.writeText('@TextOrderToCopy()')">Copia</button>
+				</MudText>
+			</MudDrawerHeader>
+			<MudContainer>
+				<MudStack>
+					@foreach (Store store in _stores)
+					{
+						<MudCard>
+							<MudCardHeader>
+								<CardHeaderContent>
+									<MudText>@store.Name</MudText>
+								</CardHeaderContent>
+							</MudCardHeader>
+							<MudCardContent>
+								@if (_chosenPizzas.ContainsKey(store.ID))
+								{
+									foreach (Order order in _chosenPizzas[store.ID])
+									{
+										<MudText>
+											@order.Pizza?.Name (@order.OrderUser)
+											@if (CanDeleteOrder(order))
+											{
+												<MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" OnClick="(click) => RemoveChoosenPizza(store.ID, order.ID)" />
+											}
+										</MudText>
+									}
+								}
+							</MudCardContent>
+						</MudCard>
+					}
+				</MudStack>
+			</MudContainer>
+		</MudDrawer>
+		<MudContainer>
+			<MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6" ActivePanelIndexChanged="@(index => TabChanged(index))">
+				@foreach (Store store in _stores)
+				{
+					<MudTabPanel Text="@store.Name" BadgeData="CountSelectedPizzas(store.ID)" BadgeColor="Color.Info" />
+				}
+			</MudTabs>
+
+			<MudTable @ref="_table" T="Pizza" Items="@_pizzas" Hover="true"
+					  Filter="new Func<Pizza,bool>(FilterFunc1)"
+					  OnRowClick="@OnRowClick" SelectOnRowClick="false"
+					  Height="350px" Breakpoint="Breakpoint.Sm" Virtualize="true" FixedHeader="true">
+
+
+				<ToolBarContent>
+
+					<MudCheckBox @bind-Checked="@_onlyFavourites">Solo favoriti</MudCheckBox>
+
+					<MudCheckBox @bind-Checked="@_excludeBlacklist">Escludi blacklist</MudCheckBox>
+
+					<MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start"
+								  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0" />
+
+
+					<MudComboBox @bind-Value="@_includedIngredientValue" @bind-SelectedValues="@_includedIngredientsSelectedValues" Variant="Variant.Filled"
+								 Label="Includi" InputPresenter="ValuePresenter.Chip" MultiSelection="true" Editable="true"
+								 ChipCloseable="true" ChipSize="Size.Medium" ChipVariant="Variant.Filled" Color="Color.Primary"
+								 ToStringFunc="@(e => e?.Name)">
+						<ChildContent>
+							@foreach (Ingredient ingredient in _ingredients)
+							{
+								<MudComboBoxItem Value="@ingredient" Text="@ingredient.Name">@ingredient.Name</MudComboBoxItem>
+							}
+						</ChildContent>
+					</MudComboBox>
+
+					<MudComboBox @bind-Value="@_excludedIngredientValue" @bind-SelectedValues="@_excludedIngredientsSelectedValues" Variant="Variant.Filled"
+								 Label="Escludi" InputPresenter="ValuePresenter.Chip" MultiSelection="true" Editable="true"
+								 ChipCloseable="true" ChipSize="Size.Medium" ChipVariant="Variant.Filled" Color="Color.Primary"
+								 ToStringFunc="@(e => e?.Name)">
+						<ChildContent>
+							@foreach (Ingredient ingredient in _ingredients)
+							{
+								<MudComboBoxItem Value="@ingredient" Text="@ingredient.Name">@ingredient.Name</MudComboBoxItem>
+							}
+						</ChildContent>
+					</MudComboBox>
+
+
+				</ToolBarContent>
+				<HeaderContent>
+					<MudTh></MudTh>
+					<MudTh>Nome</MudTh>
+					<MudTh>Ingredienti</MudTh>
+					<MudTh>Prezzo</MudTh>
+					@if (SecurityService.IsUserLogged())
+					{
+						<MudTh>Blacklist</MudTh>
+						<MudTh>Favourite</MudTh>
+					}
+					<MudTh></MudTh>
+				</HeaderContent>
+				<RowTemplate>
+					<MudTd DataLabel="Selezionato">
+						<MudCheckBox T="bool" Checked="IsPizzaSelected(_currentStoreId ?? 0, context.ID)"
+									 CheckedChanged="(value) => PizzaSelectedChanged(value, _currentStoreId ?? 0, context.ID)" />
+					</MudTd>
+					<MudTd DataLabel="Nome">@context.Name</MudTd>
+					<MudTd DataLabel="Ingredienti">@context.GetIngredientsList()</MudTd>
+					<MudTd DataLabel="Prezzo">@context.Price?.ToString("c", _cultureInfo)</MudTd>
+
+					@if (SecurityService.IsUserLogged())
+					{
+						<MudTd DataLabel="Blacklist">
+							<MudSwitch Checked=IsBlacklistedPizza(context.ID) T="bool" CheckedChanged="(switchValue) => ChangeBlacklistedPizza(switchValue, context.ID)"
+								   ThumbIcon="@(IsBlacklistedPizza(context.ID) ? Icons.Material.Filled.Block : null)"
+								   ThumbIconColor="@(IsBlacklistedPizza(context.ID) ? Color.Error : Color.Secondary)" />
+						</MudTd>
+						<MudTd DataLabel="Favourite">
+							<MudSwitch Checked=IsFavouritePizza(context.ID) T="bool" CheckedChanged="(switchValue) => ChangeFavouritePizza(switchValue, context.ID)"
+								   ThumbIcon="@(IsFavouritePizza(context.ID) ? Icons.Material.Filled.Star : null)"
+								   ThumbIconColor="@(IsFavouritePizza(context.ID) ? Color.Success : Color.Secondary)" />
+						</MudTd>
+					}
+					<MudTd DataLabel="Azione">
+						<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" OnClick="(click) => ChoosePizza(context.ID)" />
+					</MudTd>
+				</RowTemplate>
+			</MudTable>
+			<div class="d-flex justify-center align-center mud-height-full">
+				<MudButton Color="Color.Inherit" OnClick="@ToggleEndDrawer" Class="mx-2">Toggle end</MudButton>
+				<MudButton Color="Color.Inherit" OnClick="@Random" Class="mx-2">Random</MudButton>
+			</div>
+		</MudContainer>
+	</MudDrawerContainer>
+
+</MudPaper>
+
+
+
+
+@code {
+	Ingredient? _includedIngredientValue;
+	Ingredient? _excludedIngredientValue;
+	IEnumerable<Ingredient>? _includedIngredientsSelectedValues;
+	IEnumerable<Ingredient>? _excludedIngredientsSelectedValues;
+
+
+	public bool Basic_CheckBox1 { get; set; } = true;
+	private List<Store> _stores = new();
+	private List<Pizza> _pizzas = new();
+	private List<Ingredient> _ingredients = new();
+	private bool Basic_Switch1 { get; set; } = false;
+	private bool _onlyFavourites { get; set; } = false;
+	private bool _excludeBlacklist { get; set; } = false;
+	private CultureInfo _cultureInfo = new CultureInfo("it-IT");
+
+	private Dictionary<int, UserPizzaPreference> preferences = new();
+	private Dictionary<int, List<Order>> _chosenPizzas = new();
+	private Dictionary<int, List<int>> _selectedPizzas = new();
+	private MudTable<Pizza> _table = default!;
+	private string _selectedItemText = "No row clicked";
+	private string searchString1 = "";
+	private int? _currentStoreId;
+	bool openEnd = false;
+
+	protected async override Task OnInitializedAsync()
+	{
+		_stores = await StoreService.FindAll();
+		if (_stores.Any())
+		{
+			_pizzas = await PizzaService.FindAllByStore(_stores.First().ID);
+			_currentStoreId = _stores.First().ID;
+		}
+		List<UserPizzaPreference> listOfPreferences = await UserPizzaPreferenceService.FindAllByUser();
+		preferences = listOfPreferences.ToDictionary(keySelector: m => m.PizzaId);
+		List<Order> orders = await OrderService.FindTodayOrders();
+		foreach (Store store in _stores)
+		{
+			_chosenPizzas.Add(store.ID, orders.Where(x => x.StoreId == store.ID).ToList());
+			_selectedPizzas.Add(store.ID, new());
+		}
+		_ingredients = await IngredientService.FindAll();
+	}
+
+
+
+	int? CountSelectedPizzas(int storeId)
+	{
+		int count = _selectedPizzas[storeId].Count();
+		return count > 0 ? count : null;
+	}
+
+	bool IsPizzaSelected(int storeId, int pizzaId)
+	{
+		return _selectedPizzas[storeId].Contains(pizzaId);
+	}
+
+	void PizzaSelectedChanged(bool value, int storeId, int pizzaId)
+	{
+		if (value)
+		{
+			_selectedPizzas[storeId].Add(pizzaId);
+		}
+		else
+		{
+			_selectedPizzas[storeId].Remove(pizzaId);
+		}
+
+	}
+
+	async Task TabChanged(int index)
+	{
+		_pizzas = await PizzaService.FindAllByStore(_stores[index].ID);
+		_currentStoreId = _stores[index].ID;
+	}
+
+	void OnRowClick(TableRowClickEventArgs<Pizza> args)
+	{
+		//_selectedItemText = $"{args.Item.Name}";
+	}
+
+	private bool FilterFunc1(Pizza element) => FilterFunc(element, searchString1, _onlyFavourites, _excludeBlacklist, _includedIngredientsSelectedValues, _excludedIngredientsSelectedValues);
+
+
+
+	private bool FilterFunc(Pizza element, string searchString, bool onlyFavourites, bool excludeBlacklist, IEnumerable<Ingredient>? _includedIngredientsSelectedValues, IEnumerable<Ingredient>? _excludedIngredientsSelectedValues)
+	{
+		if (onlyFavourites && !IsFavouritePizza(element.ID))
+		{
+			return false;
+		}
+		if (excludeBlacklist && IsBlacklistedPizza(element.ID))
+		{
+			return false;
+		}
+		List<int> pizzaIngredientIds = element.Ingredients.Select(x => x.ID).ToList();
+		if (_includedIngredientsSelectedValues != null && _includedIngredientsSelectedValues.Any())
+		{
+			List<int> ingredientIds = _includedIngredientsSelectedValues.Select(x => x.ID).ToList();
+			if (!ingredientIds.All(x => pizzaIngredientIds.Any(y => x == y)))
+			{
+				return false;
+			}
+		}
+		if (_excludedIngredientsSelectedValues != null && _excludedIngredientsSelectedValues.Any())
+		{
+			List<int> ingredientIds = _excludedIngredientsSelectedValues.Select(x => x.ID).ToList();
+			if (pizzaIngredientIds.Any(x => ingredientIds.Any(y => x == y)))
+			{
+				return false;
+			}
+		}
+		if (!string.IsNullOrWhiteSpace(searchString))
+		{
+			bool foundInName = element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase);
+			bool foundInIngredient = element.Ingredients.Select(x => x.Name).Any(x => x.Contains(searchString, StringComparison.OrdinalIgnoreCase));
+			if (!foundInName && !foundInIngredient)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private bool IsFavouritePizza(int pizzaId)
+	{
+		if (!preferences.ContainsKey(pizzaId))
+		{
+			return false;
+		}
+		return preferences[pizzaId].Favourite;
+	}
+
+	private bool IsBlacklistedPizza(int pizzaId)
+	{
+		if (!preferences.ContainsKey(pizzaId))
+		{
+			return false;
+		}
+		return preferences[pizzaId].Blacklisted;
+	}
+
+	private async Task ChangeFavouritePizza(bool switchValue, int pizzaId)
+	{
+		UserPizzaPreference pref = preferences.ContainsKey(pizzaId) ? preferences[pizzaId] : new() { PizzaId = pizzaId };
+		pref.Favourite = switchValue;
+		pref.Blacklisted = switchValue ? false : pref.Blacklisted;
+		pref = await UserPizzaPreferenceService.UpdateUserPreference(pref);
+		preferences.Remove(pizzaId);
+		preferences.TryAdd(pizzaId, pref);
+	}
+
+	private async Task ChangeBlacklistedPizza(bool switchValue, int pizzaId)
+	{
+		UserPizzaPreference pref = preferences.ContainsKey(pizzaId) ? preferences[pizzaId] : new() { PizzaId = pizzaId };
+		pref.Blacklisted = switchValue;
+		pref.Favourite = switchValue ? false : pref.Favourite;
+		pref = await UserPizzaPreferenceService.UpdateUserPreference(pref);
+		preferences.Remove(pizzaId);
+		preferences.TryAdd(pizzaId, pref);
+	}
+
+
+
+	void ToggleEndDrawer()
+	{
+		openEnd = !openEnd;
+	}
+
+	async Task Random()
+	{
+		Random random = new();
+		foreach (KeyValuePair<int, List<int>> entry in _selectedPizzas)
+		{
+			if (entry.Value.Count() <= 0)
+			{
+				continue;
+			}
+			int index = random.Next(entry.Value.Count());
+			int pizzaId = entry.Value[index];
+
+			await ChoosePizza(pizzaId, entry.Key);
+		}
+	}
+
+	async Task ChoosePizza(int chosenPizzaId, int storeId = 0)
+	{
+		if (storeId == 0)
+		{
+			storeId = _currentStoreId ?? 0;
+		}
+
+		if (_currentStoreId != null)
+		{
+			if (!_chosenPizzas.ContainsKey(storeId))
+			{
+				_chosenPizzas.Add(storeId, new());
+			}
+			Order newOrder = new()
+				{
+					PizzaId = chosenPizzaId,
+					StoreId = storeId,
+					OrderUser = SecurityService.GetLoggedUsername(),
+					Date = DateOnly.FromDateTime(DateTime.Now)
+				};
+			newOrder = await OrderService.Insert(newOrder);
+			_chosenPizzas[storeId].Add(newOrder);
+			openEnd = true;
+		}
+	}
+
+	bool CanDeleteOrder(Order order)
+	{
+		return SecurityService.GetLoggedUsername() == order.OrderUser;
+	}
+
+	async Task RemoveChoosenPizza(int storedId, int orderId)
+	{
+		Order orderToRemove = _chosenPizzas[storedId].First(x => x.ID == orderId);
+		_chosenPizzas[storedId].Remove(orderToRemove);
+		await OrderService.Delete(orderToRemove);
+	}
+
+	string TextOrderToCopy()
+	{
+		string result = "";
+		foreach (Store store in _stores)
+		{
+			result += store.Name + ": \\n";
+			if (_chosenPizzas.ContainsKey(store.ID))
+			{
+				foreach (Order order in _chosenPizzas[store.ID])
+				{
+
+					result += order.Pizza.Name +"\\n";
+				}
+			}
+			result += "\\n";
+		}
+		return result;
+	}
+
+}

@@ -21,4 +21,6 @@ internal class User : AuditedEntity
     public string Salt { get; set; } = default!;
 
     public DateTime? LastAccess { get; set; }
+
+    public List<UserPizzaPreference> UserPizzaPreference { get; } = new();
 }

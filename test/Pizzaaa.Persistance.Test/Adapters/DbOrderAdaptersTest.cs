@@ -95,7 +95,7 @@ public class DbOrderAdaptersTest
         };
         BLL.Models.Order mappedBllOrder = new() { OrderUser = "smith" };
         Pizza pizzaFromRepo = new() { Name = "pepperoni" };
-        Store soreFromRepo = new() { Name = "domino" };
+        Store storeFromRepo = new() { Name = "domino" };
         Order? orderAfterInsert = null;
 
         _mockMapper.Setup(mock => mock.Map<Order>(orderToInsert)).Returns(mappedEntityOrder);
@@ -103,14 +103,14 @@ public class DbOrderAdaptersTest
             .Callback<object>(input => orderAfterInsert = (Order)input)
             .Returns(mappedBllOrder);
         _mockPizzaRepository.Setup(mock => mock.FindById(orderToInsert.PizzaId)).ReturnsAsync(pizzaFromRepo);
-        _mockStoreRepository.Setup(mock => mock.FindById(orderToInsert.StoreId)).ReturnsAsync(soreFromRepo);
+        _mockStoreRepository.Setup(mock => mock.FindById(orderToInsert.StoreId)).ReturnsAsync(storeFromRepo);
 
         BLL.Models.Order result = await _adapter.Insert(orderToInsert);
 
         Assert.NotNull(result);
         Assert.NotNull(orderAfterInsert);
         Assert.Equal(pizzaFromRepo, orderAfterInsert.Pizza);
-        Assert.Equal(soreFromRepo, orderAfterInsert.Store);
+        Assert.Equal(storeFromRepo, orderAfterInsert.Store);
     }
 
     [Fact]

@@ -37,7 +37,6 @@ public static class PersistanceConfiguration
         services.AddDatabaseConnection(settings);
 
         services.AddScoped<IPizzaPort, DbPizzaAdapter>();
-        services.AddScoped<IUserPort, DbUserAdapter>();
         services.AddScoped<IStorePort, DbStoreAdapter>();
         services.AddScoped<IIngredientPort, DbIngredientAdapter>();
         services.AddScoped<IUserPizzaPreferencePort, DbUserPizzaPreferenceAdapter>();

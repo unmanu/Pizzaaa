@@ -1,21 +1,15 @@
 ﻿using Pizzaaa.BLL.Models;
 using Pizzaaa.BLL.Ports;
-using Pizzaaa.BLL.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizzaaa.BLL.Services;
 
 public class OrderService
 {
-	private readonly IOrderPort _orderPort;
+    private readonly IOrderPort _orderPort;
 
-	public OrderService(IOrderPort orderPort)
-	{
-		this._orderPort = orderPort;
+    public OrderService(IOrderPort orderPort)
+    {
+        this._orderPort = orderPort;
     }
 
     public async Task<List<Order>> FindTodayOrders()

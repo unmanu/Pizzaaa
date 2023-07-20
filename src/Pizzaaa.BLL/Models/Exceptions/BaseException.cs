@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Pizzaaa.BLL.Models.Exceptions;
 
@@ -21,7 +16,7 @@ public class BaseException : Exception
     public BaseException(string error)
         : base(error)
     {
-        Errors = new() { new("", error)};
+        Errors = new() { new("", error) };
     }
 
     public BaseException(ErrorDetail error)

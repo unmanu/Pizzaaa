@@ -1,15 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
+﻿using Microsoft.EntityFrameworkCore;
 using Pizzaaa.BLL.Security;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Repositories;
 
@@ -18,13 +10,13 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
     protected readonly PizzaContext _pizzaContext;
     protected readonly SecurityService _securityService;
 
-	public BaseRepository(PizzaContext pizzaContext, SecurityService securityService)
-	{
-		this._pizzaContext = pizzaContext;
-		this._securityService = securityService;
+    public BaseRepository(PizzaContext pizzaContext, SecurityService securityService)
+    {
+        this._pizzaContext = pizzaContext;
+        this._securityService = securityService;
     }
 
-	protected abstract DbSet<T> GetSet();
+    protected abstract DbSet<T> GetSet();
 
     public async Task<T?> FindById(int id)
     {
@@ -37,13 +29,14 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
     }
 
     public async Task Insert(T entity)
-	{
-		if (entity is AuditedEntity auditedEntity) {
-			AddInsertUser(auditedEntity);
-		}
+    {
+        if (entity is AuditedEntity auditedEntity)
+        {
+            AddInsertUser(auditedEntity);
+        }
 
-		await GetSet().AddAsync(entity);
-		await _pizzaContext.SaveChangesAsync();
+        await GetSet().AddAsync(entity);
+        await _pizzaContext.SaveChangesAsync();
     }
 
     public async Task Delete(T entity)
@@ -80,7 +73,7 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
     private void AddInsertUser(AuditedEntity audit)
     {
         audit.InsertUser = _securityService.GetLoggedUser().Username;
-		audit.InsertDate = DateTime.Now;
+        audit.InsertDate = DateTime.Now;
     }
 
     private void AddUpdateUser(AuditedEntity audit)

@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
 using Moq;
 using Pizzaaa.Persistance.Adapters;
-using Pizzaaa.Persistance.Repositories;
 using Pizzaaa.Persistance.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Test.Adapters;
 
@@ -29,7 +23,7 @@ public class DbIngredientAdapterTest
     [Fact]
     public async Task FindAll_EverythingGoesWell_ReturnsIngredientList()
     {
-        List<Models.Ingredient> ingredientsEntity = new() { new() {Name= "potato" } };
+        List<Models.Ingredient> ingredientsEntity = new() { new() { Name = "potato" } };
         List<BLL.Models.Ingredient> ingredientsBll = new() { new() { Name = "tomato" } };
 
         _mockIngredientRepository.Setup(mock => mock.FindAll()).ReturnsAsync(ingredientsEntity);

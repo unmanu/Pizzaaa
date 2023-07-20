@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Models;
 using Pizzaaa.Persistance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Adapters;
 
@@ -21,7 +15,7 @@ internal class DbUserPizzaPreferenceAdapter : IUserPizzaPreferencePort
     public DbUserPizzaPreferenceAdapter(
         UserPizzaPreferenceRepository userPizzaPreferenceRepository,
         PizzaRepository pizzaRepository,
-        UserRepository userRepository, 
+        UserRepository userRepository,
         IMapper mapper)
     {
         this._userPizzaPreferenceRepository = userPizzaPreferenceRepository;
@@ -39,8 +33,10 @@ internal class DbUserPizzaPreferenceAdapter : IUserPizzaPreferencePort
 
     public async Task<BLL.Models.UserPizzaPreference> UpdateUserPreference(BLL.Models.UserPizzaPreference userPizzaPreference)
     {
-        if (userPizzaPreference.ID != 0) {
-            await _userPizzaPreferenceRepository.Update(userPizzaPreference.ID, x => {
+        if (userPizzaPreference.ID != 0)
+        {
+            await _userPizzaPreferenceRepository.Update(userPizzaPreference.ID, x =>
+            {
                 x.Favourite = userPizzaPreference.Favourite;
                 x.Blacklisted = userPizzaPreference.Blacklisted;
             });

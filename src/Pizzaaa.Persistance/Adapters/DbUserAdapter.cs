@@ -2,11 +2,6 @@
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Models;
 using Pizzaaa.Persistance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Adapters;
 
@@ -34,5 +29,5 @@ internal class DbUserAdapter : IUserPort
         await _userRepository.Insert(userEntity);
         return _mapper.Map<BLL.Models.User>(userEntity);
     }
-    
+
 }

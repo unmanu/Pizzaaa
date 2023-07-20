@@ -1,12 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Pizzaaa.Persistance.Models;
+﻿using Pizzaaa.Persistance.Models;
 using Pizzaaa.Persistance.Parser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Data;
 
@@ -95,7 +88,7 @@ internal static class DbInitializer
                 continue;
             }
             Store? store = stores.FirstOrDefault(x => x.Name == jsonPizza.Shop);
-            if(store == null)
+            if (store == null)
             {
                 continue;
             }

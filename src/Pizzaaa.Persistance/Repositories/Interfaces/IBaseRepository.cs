@@ -1,15 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Pizzaaa.BLL.Security;
-using Pizzaaa.Persistance.Data;
-using Pizzaaa.Persistance.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pizzaaa.Persistance.Models;
 
 namespace Pizzaaa.Persistance.Repositories;
 

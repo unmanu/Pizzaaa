@@ -2,10 +2,11 @@
 using Pizzaaa.BLL.Security;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal class UserRepository : BaseRepository<User>
+internal class UserRepository : BaseRepository<User>, IUserRepository
 {
 
     public UserRepository(PizzaContext pizzaContext, SecurityService securityService)

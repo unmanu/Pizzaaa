@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Models;
-using Pizzaaa.Persistance.Repositories;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Adapters;
 
 internal class DbUserAdapter : IUserPort
 {
-    private readonly UserRepository _userRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public DbUserAdapter(UserRepository userRepository, IMapper mapper)
+    public DbUserAdapter(IUserRepository userRepository, IMapper mapper)
     {
         this._userRepository = userRepository;
         _mapper = mapper;

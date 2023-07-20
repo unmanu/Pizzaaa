@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Models;
-using Pizzaaa.Persistance.Repositories;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Adapters;
 
 internal class DbSecurityAdapter : ISecurityPort
 {
-    private readonly SecurityRepository _securityRepository;
+    private readonly ISecurityRepository _securityRepository;
     private readonly IMapper _mapper;
 
-    public DbSecurityAdapter(SecurityRepository securityRepository, IMapper mapper)
+    public DbSecurityAdapter(ISecurityRepository securityRepository, IMapper mapper)
     {
         this._securityRepository = securityRepository;
         _mapper = mapper;

@@ -2,21 +2,21 @@
 using Pizzaaa.BLL.Models.Exceptions;
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Models;
-using Pizzaaa.Persistance.Repositories;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Adapters;
 
 internal class DbOrderAdapters : IOrderPort
 {
-    private readonly OrderRepository _orderRepository;
-    private readonly PizzaRepository _pizzaRepository;
-    private readonly StoreRepository _storeRepository;
+    private readonly IOrderRepository _orderRepository;
+    private readonly IPizzaRepository _pizzaRepository;
+    private readonly IStoreRepository _storeRepository;
     private readonly IMapper _mapper;
 
     public DbOrderAdapters(
-        OrderRepository orderRepository,
-        PizzaRepository pizzaRepository,
-        StoreRepository storeRepository,
+        IOrderRepository orderRepository,
+        IPizzaRepository pizzaRepository,
+        IStoreRepository storeRepository,
         IMapper mapper)
     {
         this._orderRepository = orderRepository;

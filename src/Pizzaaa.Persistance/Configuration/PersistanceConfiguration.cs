@@ -45,12 +45,12 @@ public static class PersistanceConfiguration
         services.AddScoped<IOrderPort, DbOrderAdapters>();
 
         services.AddScoped<IIngredientRepository, IngredientRepository>();
-        services.AddScoped<PizzaRepository>();
-        services.AddScoped<StoreRepository>();
-        services.AddScoped<UserRepository>();
-        services.AddScoped<SecurityRepository>();
-        services.AddScoped<UserPizzaPreferenceRepository>();
-        services.AddScoped<OrderRepository>();
+        services.AddScoped<IPizzaRepository, PizzaRepository>();
+        services.AddScoped<IStoreRepository, StoreRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ISecurityRepository, SecurityRepository>();
+        services.AddScoped<IUserPizzaPreferenceRepository, UserPizzaPreferenceRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
         return services;
     }

@@ -2,10 +2,11 @@
 using Pizzaaa.BLL.Security;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal class PizzaRepository : BaseRepository<Pizza>
+internal class PizzaRepository : BaseRepository<Pizza>, IPizzaRepository
 {
 
     public PizzaRepository(PizzaContext pizzaContext, SecurityService securityService)

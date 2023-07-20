@@ -1,21 +1,21 @@
 ﻿using AutoMapper;
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Models;
-using Pizzaaa.Persistance.Repositories;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Adapters;
 
 internal class DbUserPizzaPreferenceAdapter : IUserPizzaPreferencePort
 {
-    private readonly UserPizzaPreferenceRepository _userPizzaPreferenceRepository;
-    private readonly PizzaRepository _pizzaRepository;
-    private readonly UserRepository _userRepository;
+    private readonly IUserPizzaPreferenceRepository _userPizzaPreferenceRepository;
+    private readonly IPizzaRepository _pizzaRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
     public DbUserPizzaPreferenceAdapter(
-        UserPizzaPreferenceRepository userPizzaPreferenceRepository,
-        PizzaRepository pizzaRepository,
-        UserRepository userRepository,
+        IUserPizzaPreferenceRepository userPizzaPreferenceRepository,
+        IPizzaRepository pizzaRepository,
+        IUserRepository userRepository,
         IMapper mapper)
     {
         this._userPizzaPreferenceRepository = userPizzaPreferenceRepository;

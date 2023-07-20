@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Moq;
 using Pizzaaa.Persistance.Adapters;
+using Pizzaaa.Persistance.Models;
 using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Test.Adapters;
@@ -23,14 +24,14 @@ public class DbIngredientAdapterTest
     [Fact]
     public async Task FindAll_EverythingGoesWell_ReturnsIngredientList()
     {
-        List<Models.Ingredient> ingredientsEntity = new() { new() { Name = "potato" } };
-        List<BLL.Models.Ingredient> ingredientsBll = new() { new() { Name = "tomato" } };
+        List<Ingredient> ingredientsFromRepo = new() { new() { Name = "potato" } };
+        List<BLL.Models.Ingredient> mappedIngredients = new() { new() { Name = "tomato" } };
 
-        _mockIngredientRepository.Setup(mock => mock.FindAll()).ReturnsAsync(ingredientsEntity);
-        _mockMapper.Setup(mock => mock.Map<List<BLL.Models.Ingredient>>(ingredientsEntity)).Returns(ingredientsBll);
+        _mockIngredientRepository.Setup(mock => mock.FindAll()).ReturnsAsync(ingredientsFromRepo);
+        _mockMapper.Setup(mock => mock.Map<List<BLL.Models.Ingredient>>(ingredientsFromRepo)).Returns(mappedIngredients);
 
         List<BLL.Models.Ingredient>? result = await _adapter.FindAll();
 
-        Assert.Equal(ingredientsBll, result);
+        Assert.Equal(mappedIngredients, result);
     }
 }

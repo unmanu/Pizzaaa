@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal class SecurityRepository
+internal class SecurityRepository : ISecurityRepository
 {
     protected readonly PizzaContext _pizzaContext;
 

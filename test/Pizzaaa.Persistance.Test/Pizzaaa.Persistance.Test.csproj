@@ -27,8 +27,4 @@
     <ProjectReference Include="..\..\src\Pizzaaa.Persistance\Pizzaaa.Persistance.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Adapters\" />
-  </ItemGroup>
-
 </Project>

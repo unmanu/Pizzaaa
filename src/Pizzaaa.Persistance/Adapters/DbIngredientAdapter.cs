@@ -3,6 +3,7 @@ using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Models;
 using Pizzaaa.Persistance.Repositories;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Pizzaaa.Persistance.Adapters;
 
 internal class DbIngredientAdapter : IIngredientPort
 {
-	private readonly IngredientRepository _ingredientRepository;
+	private readonly IIngredientRepository _ingredientRepository;
     private readonly IMapper _mapper;
 
-	public DbIngredientAdapter(IngredientRepository ingredientRepository, IMapper mapper)
+	public DbIngredientAdapter(IIngredientRepository ingredientRepository, IMapper mapper)
 	{
 		this._ingredientRepository = ingredientRepository;
         this._mapper = mapper;

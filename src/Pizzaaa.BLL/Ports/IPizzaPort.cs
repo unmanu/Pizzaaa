@@ -11,5 +11,4 @@ public interface IPizzaPort
 {
     Task<List<Pizza>> FindAllByStore(int storeId);
 
-    Task Insert(Pizza pizza);
 }

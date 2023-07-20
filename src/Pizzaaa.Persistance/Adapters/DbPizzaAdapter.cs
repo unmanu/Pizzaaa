@@ -14,13 +14,11 @@ namespace Pizzaaa.Persistance.Adapters;
 internal class DbPizzaAdapter : IPizzaPort
 {
 	private readonly PizzaRepository _pizzaRepository;
-    private readonly StoreRepository _storeRepository;
     private readonly IMapper _mapper;
 
-	public DbPizzaAdapter(PizzaRepository pizzaRepository, StoreRepository storeRepository, IMapper mapper)
+	public DbPizzaAdapter(PizzaRepository pizzaRepository, IMapper mapper)
 	{
 		this._pizzaRepository = pizzaRepository;
-        this._storeRepository = storeRepository;
         _mapper = mapper;
 
 	}
@@ -31,12 +29,4 @@ internal class DbPizzaAdapter : IPizzaPort
 
         return _mapper.Map<List<BLL.Models.Pizza>>(pizzas);
     }
-
-    public async Task Insert(BLL.Models.Pizza pizza)
-	{
-		Models.Pizza entity = _mapper.Map<Models.Pizza>(pizza);
-        Store? store = await _storeRepository.FindById(1);
-		//entity.Store = store!;//TODO
-        await _pizzaRepository.Insert(entity);
-	}
 }

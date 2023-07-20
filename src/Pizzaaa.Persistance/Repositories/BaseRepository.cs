@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Pizzaaa.Persistance.Repositories;
 
-internal abstract class BaseRepository<T> where T : BaseEntity
+internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
     protected readonly PizzaContext _pizzaContext;
     protected readonly SecurityService _securityService;

@@ -5,6 +5,7 @@ using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Adapters;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Repositories;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ public static class PersistanceConfiguration
 		services.AddScoped<ISecurityPort, DbSecurityAdapter>();
 		services.AddScoped<IOrderPort, DbOrderAdapters>();
 
-        services.AddScoped<IngredientRepository>();
+        services.AddScoped<IIngredientRepository, IngredientRepository>();
 		services.AddScoped<PizzaRepository>();
 		services.AddScoped<StoreRepository>();
 		services.AddScoped<UserRepository>();

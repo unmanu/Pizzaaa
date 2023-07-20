@@ -11,7 +11,7 @@ public class SecurityService
 {
     public const int KEYSIZE = 64;
     private const int ITERATIONS = 350000;
-    private HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;
+    private readonly HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;
 
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ISecurityPort _securityPort;
@@ -33,7 +33,7 @@ public class SecurityService
         }
         else
         {
-            await CheckPassword(username, password, user);
+            await CheckPassword(password, user);
         }
         await UpdateLoggedUser(username);
     }
@@ -51,7 +51,7 @@ public class SecurityService
         await _securityPort.UpdateLastAccess(insertedUser.ID);
     }
 
-    private async Task CheckPassword(string username, string password, User user)
+    private async Task CheckPassword(string password, User user)
     {
         if (VerifyPassword(password, user.Password, user.Salt))
         {

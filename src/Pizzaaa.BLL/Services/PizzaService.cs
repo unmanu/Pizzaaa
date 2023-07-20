@@ -7,14 +7,10 @@ namespace Pizzaaa.BLL.Services;
 public class PizzaService
 {
     private readonly IPizzaPort _pizzaPort;
-    private readonly SecurityService _securityService;
-    private readonly IUserPort _userPort;
 
-    public PizzaService(IPizzaPort pizzaPort, IUserPort userPort, SecurityService securityService)
+    public PizzaService(IPizzaPort pizzaPort)
     {
         this._pizzaPort = pizzaPort;
-        this._userPort = userPort;
-        this._securityService = securityService;
     }
 
     public async Task<List<Pizza>> FindAllByStore(int storeId)

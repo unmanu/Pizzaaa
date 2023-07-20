@@ -10,7 +10,7 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
     protected readonly PizzaContext _pizzaContext;
     protected readonly SecurityService _securityService;
 
-    public BaseRepository(PizzaContext pizzaContext, SecurityService securityService)
+    protected BaseRepository(PizzaContext pizzaContext, SecurityService securityService)
     {
         this._pizzaContext = pizzaContext;
         this._securityService = securityService;

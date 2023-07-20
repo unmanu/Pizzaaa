@@ -1,11 +1,13 @@
-﻿namespace Pizzaaa.BLL.Utils;
+﻿using Pizzaaa.BLL.Models.Exceptions;
+
+namespace Pizzaaa.BLL.Utils;
 
 public static class HexUtils
 {
     public static byte[] HexToByteArray(string hex)
     {
         if (hex.Length % 2 == 1)
-            throw new Exception("The binary key cannot have an odd number of digits");
+            throw new BllException("The binary key cannot have an odd number of digits");
 
         byte[] arr = new byte[hex.Length >> 1];
 
@@ -25,6 +27,7 @@ public static class HexUtils
         //For lowercase a-f letters:
         //return val - (val < 58 ? 48 : 87);
         //Or the two combined, but a bit slower:
-        return val - (val < 58 ? 48 : (val < 97 ? 55 : 87));
+        int forLowerCase = val < 97 ? 55 : 87;
+        return val - (val < 58 ? 48 : forLowerCase);
     }
 }

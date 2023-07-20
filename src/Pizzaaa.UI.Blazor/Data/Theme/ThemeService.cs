@@ -5,7 +5,7 @@ namespace Pizzaaa.UI.Blazor.Data.Theme;
 public class ThemeService
 {
     public const string DEFAULT_THEME = "default";
-    private Dictionary<string, MudTheme> _themes;
+    private readonly Dictionary<string, MudTheme> _themes;
 
     public ThemeService()
     {

@@ -9,7 +9,7 @@ internal static class DbInitializer
     private const string SYSTEM_USER = "system";
     private static DateTime _insertDate;
 
-    public static void Initialize(PizzaContext context, string? jsonSourceInitializert)
+    public static void Initialize(PizzaContext context, string? jsonSourceInitializert = null)
     {
         if (context.Ingredients.Any())
         {

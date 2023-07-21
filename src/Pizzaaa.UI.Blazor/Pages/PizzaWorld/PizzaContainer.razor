@@ -3,14 +3,15 @@
 @using Pizzaaa.BLL.Models;
 @using Pizzaaa.BLL.Security;
 @using Pizzaaa.BLL.Services;
+@using Pizzaaa.BLL.Services.Interfaces;
 @using Pizzaaa.BLL.System.Interfaces;
 @using System.Globalization;
-@inject StoreService StoreService
-@inject PizzaService PizzaService
-@inject UserPizzaPreferenceService UserPizzaPreferenceService
+@inject IStoreService StoreService
+@inject IPizzaService PizzaService
+@inject IUserPizzaPreferenceService UserPizzaPreferenceService
 @inject ISecurityService SecurityService
-@inject OrderService OrderService
-@inject IngredientService IngredientService
+@inject IOrderService OrderService
+@inject IIngredientService IngredientService
 @inject IRandomService RandomService
 
 <MudPaper Elevation="0" Style="overflow:hidden; position:relative;">

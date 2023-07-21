@@ -1,9 +1,10 @@
 ﻿using Pizzaaa.BLL.Models;
 using Pizzaaa.BLL.Ports;
+using Pizzaaa.BLL.Services.Interfaces;
 
 namespace Pizzaaa.BLL.Services;
 
-public class PizzaService
+public class PizzaService : IPizzaService
 {
 	private readonly IPizzaPort _pizzaPort;
 

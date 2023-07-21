@@ -1,10 +1,11 @@
 ﻿using Pizzaaa.BLL.Models;
 using Pizzaaa.BLL.Ports;
 using Pizzaaa.BLL.Security;
+using Pizzaaa.BLL.Services.Interfaces;
 
 namespace Pizzaaa.BLL.Services;
 
-public class UserPizzaPreferenceService
+public class UserPizzaPreferenceService : IUserPizzaPreferenceService
 {
 	private readonly IUserPizzaPreferencePort _userPizzaPreferencePort;
 	private readonly ISecurityService _securityService;

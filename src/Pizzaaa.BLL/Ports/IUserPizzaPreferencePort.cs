@@ -4,6 +4,6 @@ namespace Pizzaaa.BLL.Ports;
 
 public interface IUserPizzaPreferencePort
 {
-    Task<List<UserPizzaPreference>> FindAllByUser();
-    Task<UserPizzaPreference> UpdateUserPreference(UserPizzaPreference userPizzaPreference);
+	Task<List<UserPizzaPreference>> FindAllByUser();
+	Task<UserPizzaPreference> UpdateUserPreference(UserPizzaPreference userPizzaPreference);
 }

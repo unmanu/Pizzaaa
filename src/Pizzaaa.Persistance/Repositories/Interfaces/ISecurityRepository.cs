@@ -5,9 +5,9 @@ namespace Pizzaaa.Persistance.Repositories.Interfaces;
 internal interface ISecurityRepository
 {
 
-    Task<User?> FindByUsername(string username);
+	Task<User?> FindByUsername(string username);
 
-    Task Insert(User entity);
+	Task Insert(User entity);
 
-    Task<User?> Update(int id, Action<User> updateFields);
+	Task<User?> Update(int id, Action<User> updateFields);
 }

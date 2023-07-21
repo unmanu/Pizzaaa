@@ -4,5 +4,5 @@ namespace Pizzaaa.Persistance.Repositories.Interfaces;
 
 internal interface IUserPizzaPreferenceRepository : IBaseRepository<UserPizzaPreference>
 {
-    Task<List<UserPizzaPreference>> FindAllByUser();
+	Task<List<UserPizzaPreference>> FindAllByUser();
 }

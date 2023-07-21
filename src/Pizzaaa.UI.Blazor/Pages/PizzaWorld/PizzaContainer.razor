@@ -3,13 +3,15 @@
 @using Pizzaaa.BLL.Models;
 @using Pizzaaa.BLL.Security;
 @using Pizzaaa.BLL.Services;
+@using Pizzaaa.BLL.System.Interfaces;
 @using System.Globalization;
 @inject StoreService StoreService
 @inject PizzaService PizzaService
 @inject UserPizzaPreferenceService UserPizzaPreferenceService
-@inject SecurityService SecurityService
+@inject ISecurityService SecurityService
 @inject OrderService OrderService
 @inject IngredientService IngredientService
+@inject IRandomService RandomService
 
 <MudPaper Elevation="0" Style="overflow:hidden; position:relative;">
 	<MudDrawerContainer Class="mud-height-full">
@@ -322,14 +324,13 @@
 
 	async Task Random()
 	{
-		Random random = new();
 		foreach (KeyValuePair<int, List<int>> entry in _selectedPizzas)
 		{
 			if (entry.Value.Count() <= 0)
 			{
 				continue;
 			}
-			int index = random.Next(entry.Value.Count());
+			int index = RandomService.RandomInt(entry.Value.Count());
 			int pizzaId = entry.Value[index];
 
 			await ChoosePizza(pizzaId, entry.Key);

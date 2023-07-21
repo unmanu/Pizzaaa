@@ -10,119 +10,117 @@ namespace Pizzaaa.Persistance.Test.Adapters;
 
 public class DbOrderAdaptersTest
 {
-    private readonly Mock<IOrderRepository> _mockOrderRepository;
-    private readonly Mock<IPizzaRepository> _mockPizzaRepository;
-    private readonly Mock<IStoreRepository> _mockStoreRepository;
-    private readonly Mock<IMapper> _mockMapper;
+	private readonly Mock<IOrderRepository> _mockOrderRepository;
+	private readonly Mock<IPizzaRepository> _mockPizzaRepository;
+	private readonly Mock<IStoreRepository> _mockStoreRepository;
+	private readonly Mock<IMapper> _mockMapper;
 
-    private readonly DbOrderAdapters _adapter;
+	private readonly DbOrderAdapters _adapter;
 
-    public DbOrderAdaptersTest()
-    {
-        _mockOrderRepository = new Mock<IOrderRepository>();
-        _mockPizzaRepository = new Mock<IPizzaRepository>();
-        _mockStoreRepository = new Mock<IStoreRepository>();
-        _mockMapper = new Mock<IMapper>();
+	public DbOrderAdaptersTest()
+	{
+		_mockOrderRepository = new Mock<IOrderRepository>();
+		_mockPizzaRepository = new Mock<IPizzaRepository>();
+		_mockStoreRepository = new Mock<IStoreRepository>();
+		_mockMapper = new Mock<IMapper>();
 
-        _adapter = new DbOrderAdapters(_mockOrderRepository.Object, _mockPizzaRepository.Object, _mockStoreRepository.Object, _mockMapper.Object);
-    }
+		_adapter = new DbOrderAdapters(_mockOrderRepository.Object, _mockPizzaRepository.Object, _mockStoreRepository.Object, _mockMapper.Object);
+	}
 
-    [Fact]
-    public async Task FindTodayOrders_EverythingGoesWell_ReturnsTodayOrders()
-    {
-        List<Order> ordersFromRepo = new() { new() { OrderUser = "tim" } };
-        List<BLL.Models.Order> mappedOrders = new() { new() { OrderUser = "tom" } };
+	[Fact]
+	public async Task FindTodayOrders_EverythingGoesWell_ReturnsTodayOrders()
+	{
+		List<Order> ordersFromRepo = new() { new() { OrderUser = "tim" } };
+		List<BLL.Models.Order> mappedOrders = new() { new() { OrderUser = "tom" } };
 
-        _mockOrderRepository.Setup(mock => mock.FindTodayOrders()).ReturnsAsync(ordersFromRepo);
-        _mockMapper.Setup(mock => mock.Map<List<BLL.Models.Order>>(ordersFromRepo)).Returns(mappedOrders);
+		_mockOrderRepository.Setup(mock => mock.FindTodayOrders()).ReturnsAsync(ordersFromRepo);
+		_mockMapper.Setup(mock => mock.Map<List<BLL.Models.Order>>(ordersFromRepo)).Returns(mappedOrders);
 
-        List<BLL.Models.Order>? result = await _adapter.FindTodayOrders();
+		List<BLL.Models.Order>? result = await _adapter.FindTodayOrders();
 
-        Assert.Equal(mappedOrders, result);
-    }
+		Assert.Equal(mappedOrders, result);
+	}
 
-    [Fact]
-    public async Task Insert_OrderMissingPizzaId_ThrowsException()
-    {
-        BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
-        orderToInsert.PizzaId = 0;
+	[Fact]
+	public async Task Insert_OrderMissingPizzaId_ThrowsException()
+	{
+		BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
+		orderToInsert.PizzaId = 0;
 
-        BllException exception = await Assert.ThrowsAsync<BllException>(
-            () => _adapter.Insert(orderToInsert));
+		BllException exception = await Assert.ThrowsAsync<BllException>(
+			() => _adapter.Insert(orderToInsert));
 
-        Assert.NotNull(exception);
-        Assert.NotNull(exception.Errors);
-        Assert.Contains(exception.Errors, x => x.Description == "missing PizzaId");
-    }
+		Assert.NotNull(exception);
+		Assert.NotNull(exception.Errors);
+		Assert.Contains(exception.Errors, x => x.Description == "missing PizzaId");
+	}
 
-    [Fact]
-    public async Task Insert_OrderMissingStoreId_ThrowsException()
-    {
-        BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
-        orderToInsert.StoreId = 0;
+	[Fact]
+	public async Task Insert_OrderMissingStoreId_ThrowsException()
+	{
+		BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
+		orderToInsert.StoreId = 0;
 
-        BllException exception = await Assert.ThrowsAsync<BllException>(
-            () => _adapter.Insert(orderToInsert));
+		BllException exception = await Assert.ThrowsAsync<BllException>(
+			() => _adapter.Insert(orderToInsert));
 
-        Assert.NotNull(exception);
-        Assert.NotNull(exception.Errors);
-        Assert.Contains(exception.Errors, x => x.Description == "missing StoreId");
-    }
+		Assert.NotNull(exception);
+		Assert.NotNull(exception.Errors);
+		Assert.Contains(exception.Errors, x => x.Description == "missing StoreId");
+	}
 
-    [Fact]
-    public async Task Insert_OrderMissingOdserUser_ThrowsException()
-    {
-        BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
-        orderToInsert.OrderUser = "";
+	[Fact]
+	public async Task Insert_OrderMissingOdserUser_ThrowsException()
+	{
+		BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
+		orderToInsert.OrderUser = "";
 
-        BllException exception = await Assert.ThrowsAsync<BllException>(
-            () => _adapter.Insert(orderToInsert));
+		BllException exception = await Assert.ThrowsAsync<BllException>(
+			() => _adapter.Insert(orderToInsert));
 
-        Assert.NotNull(exception);
-        Assert.NotNull(exception.Errors);
-        Assert.Contains(exception.Errors, x => x.Description == "missing OrderUser");
-    }
+		Assert.NotNull(exception);
+		Assert.NotNull(exception.Errors);
+		Assert.Contains(exception.Errors, x => x.Description == "missing OrderUser");
+	}
 
-    [Fact]
-    public async Task Insert_ValidInput_InsertOrderAndReturnsItCompleted()
-    {
-        BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
-        Order mappedEntityOrder = new()
-        {
-            OrderUser = "tom",
-            StoreId = orderToInsert.StoreId,
-            PizzaId = orderToInsert.PizzaId
-        };
-        BLL.Models.Order mappedBllOrder = new() { OrderUser = "smith" };
-        Pizza pizzaFromRepo = new() { Name = "pepperoni" };
-        Store storeFromRepo = new() { Name = "domino" };
-        Order? orderAfterInsert = null;
+	[Fact]
+	public async Task Insert_ValidInput_InsertOrderAndReturnsItCompleted()
+	{
+		BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
+		Order mappedEntityOrder = new()
+		{
+			OrderUser = "tom",
+			StoreId = orderToInsert.StoreId,
+			PizzaId = orderToInsert.PizzaId
+		};
+		BLL.Models.Order mappedBllOrder = new() { OrderUser = "smith" };
+		Pizza pizzaFromRepo = new() { Name = "pepperoni" };
+		Store storeFromRepo = new() { Name = "domino" };
+		Order? orderAfterInsert = null;
 
-        _mockMapper.Setup(mock => mock.Map<Order>(orderToInsert)).Returns(mappedEntityOrder);
-        _mockMapper.Setup(mock => mock.Map<BLL.Models.Order>(It.IsAny<Order>()))
-            .Callback<object>(input => orderAfterInsert = (Order)input)
-            .Returns(mappedBllOrder);
-        _mockPizzaRepository.Setup(mock => mock.FindById(orderToInsert.PizzaId)).ReturnsAsync(pizzaFromRepo);
-        _mockStoreRepository.Setup(mock => mock.FindById(orderToInsert.StoreId)).ReturnsAsync(storeFromRepo);
+		_mockMapper.Setup(mock => mock.Map<Order>(orderToInsert)).Returns(mappedEntityOrder);
+		_mockMapper.Setup(mock => mock.Map<BLL.Models.Order>(It.IsAny<Order>()))
+			.Callback<object>(input => orderAfterInsert = (Order)input)
+			.Returns(mappedBllOrder);
+		_mockPizzaRepository.Setup(mock => mock.FindById(orderToInsert.PizzaId)).ReturnsAsync(pizzaFromRepo);
+		_mockStoreRepository.Setup(mock => mock.FindById(orderToInsert.StoreId)).ReturnsAsync(storeFromRepo);
 
-        BLL.Models.Order result = await _adapter.Insert(orderToInsert);
+		BLL.Models.Order result = await _adapter.Insert(orderToInsert);
 
-        Assert.NotNull(result);
-        Assert.NotNull(orderAfterInsert);
-        Assert.Equal(pizzaFromRepo, orderAfterInsert.Pizza);
-        Assert.Equal(storeFromRepo, orderAfterInsert.Store);
-    }
+		Assert.NotNull(result);
+		Assert.NotNull(orderAfterInsert);
+		Assert.Equal(pizzaFromRepo, orderAfterInsert.Pizza);
+		Assert.Equal(storeFromRepo, orderAfterInsert.Store);
+	}
 
-    [Fact]
-    public async Task Delete_EverythingGoesWell_CallsDeleteMethod()
-    {
-        BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
-        Order mappedEntityOrder = new() { OrderUser = "tom" };
+	[Fact]
+	public async Task Delete_EverythingGoesWell_CallsDeleteMethod()
+	{
+		BLL.Models.Order orderToInsert = OrderMother.ABllOrder();
+		orderToInsert.ID = 55;
 
-        _mockMapper.Setup(mock => mock.Map<Order>(orderToInsert)).Returns(mappedEntityOrder);
+		await _adapter.Delete(orderToInsert);
 
-        await _adapter.Delete(orderToInsert);
-
-        _mockOrderRepository.Verify(v => v.Delete(mappedEntityOrder));
-    }
+		_mockOrderRepository.Verify(v => v.Delete(55));
+	}
 }

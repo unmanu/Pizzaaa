@@ -11,97 +11,98 @@ namespace Pizzaaa.IntegrationTest.Repositories;
 public class SecurityRepositoryIntegrationTest : BaseDatabaseTest
 {
 
-    [Fact]
-    public async Task FindByUsername_UserFound_ReturnsUser()
-    {
-        using PizzaContext context = CreateContext();
-        await DbTestInitializer(context);
-        SecurityRepository repository = new(context);
+	[Fact]
+	public async Task FindByUsername_UserFound_ReturnsUser()
+	{
+		using PizzaContext context = CreateContext();
+		await DbTestInitializer(context);
+		SecurityRepository repository = new(context);
 
-        User? risultato = await repository.FindByUsername("tim");
+		User? result = await repository.FindByUsername("tim");
 
-        Assert.NotNull(risultato);
-        Assert.Equal(91, risultato?.ID);
-    }
+		Assert.NotNull(result);
+		Assert.Equal(91, result?.ID);
+	}
 
-    [Fact]
-    public async Task FindByUsername_UserNotFound_ReturnsNull()
-    {
-        using PizzaContext context = CreateContext();
-        await DbTestInitializer(context);
-        SecurityRepository repository = new(context);
+	[Fact]
+	public async Task FindByUsername_UserNotFound_ReturnsNull()
+	{
+		using PizzaContext context = CreateContext();
+		await DbTestInitializer(context);
+		SecurityRepository repository = new(context);
 
-        User? risultato = await repository.FindByUsername("slim");
+		User? result = await repository.FindByUsername("slim");
 
-        Assert.Null(risultato);
-    }
+		Assert.Null(result);
+	}
 
-    [Fact]
-    public async Task Insert_ValidInput_InsertUser()
-    {
-        using PizzaContext context = CreateContext();
-        await DbTestInitializer(context);
-        SecurityRepository repository = new(context);
-        User userToInsert = UserMother.AEntityUser(null, "smith");
+	[Fact]
+	public async Task Insert_ValidInput_InsertUser()
+	{
+		using PizzaContext context = CreateContext();
+		await DbTestInitializer(context);
+		SecurityRepository repository = new(context);
+		User userToInsert = UserMother.AEntityUser(null, "smith");
 
-        await repository.Insert(userToInsert);
+		await repository.Insert(userToInsert);
 
-        Assert.NotEqual(0, userToInsert.ID);
-        Assert.Equal(userToInsert.Username, userToInsert.InsertUser);
-        Assert.True(context.Users.Any(x => x.Username == userToInsert.Username));
-    }
+		Assert.NotEqual(0, userToInsert.ID);
+		Assert.Equal(userToInsert.Username, userToInsert.InsertUser);
+		Assert.True(context.Users.Any(x => x.Username == userToInsert.Username));
+	}
 
-    [Fact]
-    public async Task Insert_MissingNonNullData_ThrowsException()
-    {
-        using PizzaContext context = CreateContext();
-        await DbTestInitializer(context);
-        SecurityRepository repository = new(context);
-        User userToInsert = new() { Username = "smith" };
+	[Fact]
+	public async Task Insert_MissingNonNullData_ThrowsException()
+	{
+		using PizzaContext context = CreateContext();
+		await DbTestInitializer(context);
+		SecurityRepository repository = new(context);
+		User userToInsert = new() { Username = "smith" };
 
-        DbUpdateException exception = await Assert.ThrowsAsync<DbUpdateException>(
-            () => repository.Insert(userToInsert));
+		DbUpdateException exception = await Assert.ThrowsAsync<DbUpdateException>(
+			() => repository.Insert(userToInsert));
 
-        Assert.Contains(TestConstants.ENTITY_FRAMEWORK_SAVING_ERROR, exception.Message);
-        Assert.False(context.Users.Any(x => x.Username == userToInsert.Username));
-    }
+		Assert.NotNull(exception);
+		Assert.Contains(TestConstants.ENTITY_FRAMEWORK_SAVING_ERROR, exception.Message);
+		Assert.False(context.Users.Any(x => x.Username == userToInsert.Username));
+	}
 
-    [Fact]
-    public async Task Update_UserFound_ReturnsUserUpdated()
-    {
-        using PizzaContext context = CreateContext();
-        await DbTestInitializer(context);
-        SecurityRepository repository = new(context);
+	[Fact]
+	public async Task Update_UserFound_ReturnsUserUpdated()
+	{
+		using PizzaContext context = CreateContext();
+		await DbTestInitializer(context);
+		SecurityRepository repository = new(context);
 
-        User? updatedUser = await repository.Update(7, x => x.Salt = "test");
+		User? updatedUser = await repository.Update(7, x => x.Salt = "test");
 
-        Assert.NotNull(updatedUser);
-        Assert.Equal(7, updatedUser.ID);
-        Assert.Equal(updatedUser.Username, updatedUser.UpdateUser);
-        Assert.True(context.Users.Any(x => x.Salt == "test"));
-    }
+		Assert.NotNull(updatedUser);
+		Assert.Equal(7, updatedUser.ID);
+		Assert.Equal(updatedUser.Username, updatedUser.UpdateUser);
+		Assert.True(context.Users.Any(x => x.Salt == "test"));
+	}
 
-    [Fact]
-    public async Task Update_UserNotFound_ReturnsNull()
-    {
-        using PizzaContext context = CreateContext();
-        await DbTestInitializer(context);
-        SecurityRepository repository = new(context);
+	[Fact]
+	public async Task Update_UserNotFound_ReturnsNull()
+	{
+		using PizzaContext context = CreateContext();
+		await DbTestInitializer(context);
+		SecurityRepository repository = new(context);
 
-        User? updatedUser = await repository.Update(999, x => x.Salt = "test");
+		User? updatedUser = await repository.Update(999, x => x.Salt = "test");
 
-        Assert.Null(updatedUser);
-        Assert.False(context.Users.Any(x => x.Salt == "test"));
-    }
+		Assert.Null(updatedUser);
+		Assert.False(context.Users.Any(x => x.Salt == "test"));
+	}
 
-    private static async Task DbTestInitializer(PizzaContext context)
-    {
-        User user1 = UserMother.AEntityUser(7, "jack");
-        User user2 = UserMother.AEntityUser(91, "tim");
-        User user3 = UserMother.AEntityUser(50, "bob");
-        await context.Users.AddAsync(user1);
-        await context.Users.AddAsync(user2);
-        await context.Users.AddAsync(user3);
-        await context.SaveChangesAsync();
-    }
+	private static async Task DbTestInitializer(PizzaContext context)
+	{
+		User user1 = UserMother.AEntityUser(7, "jack");
+		User user2 = UserMother.AEntityUser(91, "tim");
+		User user3 = UserMother.AEntityUser(50, "bob");
+		await context.Users.AddAsync(user1);
+		await context.Users.AddAsync(user2);
+		await context.Users.AddAsync(user3);
+		await context.SaveChangesAsync();
+	}
 }

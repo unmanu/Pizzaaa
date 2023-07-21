@@ -4,5 +4,5 @@ namespace Pizzaaa.Persistance.Repositories.Interfaces;
 
 internal interface IOrderRepository : IBaseRepository<Order>
 {
-    Task<List<Order>> FindTodayOrders();
+	Task<List<Order>> FindTodayOrders();
 }

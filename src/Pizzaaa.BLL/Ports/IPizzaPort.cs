@@ -4,6 +4,6 @@ namespace Pizzaaa.BLL.Ports;
 
 public interface IPizzaPort
 {
-    Task<List<Pizza>> FindAllByStore(int storeId);
+	Task<List<Pizza>> FindAllByStore(int storeId);
 
 }

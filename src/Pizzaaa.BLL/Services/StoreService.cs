@@ -5,15 +5,15 @@ namespace Pizzaaa.BLL.Services;
 
 public class StoreService
 {
-    private readonly IStorePort _storePort;
+	private readonly IStorePort _storePort;
 
-    public StoreService(IStorePort storePort)
-    {
-        this._storePort = storePort;
-    }
+	public StoreService(IStorePort storePort)
+	{
+		this._storePort = storePort;
+	}
 
-    public async Task<List<Store>> FindAll()
-    {
-        return await _storePort.FindAll();
-    }
+	public async Task<List<Store>> FindAll()
+	{
+		return await _storePort.FindAll();
+	}
 }

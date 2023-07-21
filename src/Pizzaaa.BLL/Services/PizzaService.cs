@@ -5,15 +5,15 @@ namespace Pizzaaa.BLL.Services;
 
 public class PizzaService
 {
-    private readonly IPizzaPort _pizzaPort;
+	private readonly IPizzaPort _pizzaPort;
 
-    public PizzaService(IPizzaPort pizzaPort)
-    {
-        this._pizzaPort = pizzaPort;
-    }
+	public PizzaService(IPizzaPort pizzaPort)
+	{
+		this._pizzaPort = pizzaPort;
+	}
 
-    public async Task<List<Pizza>> FindAllByStore(int storeId)
-    {
-        return await _pizzaPort.FindAllByStore(storeId);
-    }
+	public async Task<List<Pizza>> FindAllByStore(int storeId)
+	{
+		return await _pizzaPort.FindAllByStore(storeId);
+	}
 }

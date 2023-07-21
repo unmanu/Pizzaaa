@@ -2,7 +2,7 @@
 
 public class ThemeDto
 {
-    public string ThemeName { get; set; } = "";
-    public bool DarkMode { get; set; }
+	public string ThemeName { get; set; } = "";
+	public bool DarkMode { get; set; }
 
 }

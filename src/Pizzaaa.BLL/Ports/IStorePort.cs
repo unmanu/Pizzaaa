@@ -4,5 +4,5 @@ namespace Pizzaaa.BLL.Ports;
 
 public interface IStorePort
 {
-    Task<List<Store>> FindAll();
+	Task<List<Store>> FindAll();
 }

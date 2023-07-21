@@ -2,7 +2,7 @@
 
 public enum PersistanceType
 {
-    SqlServer,
-    Sqlite,
-    InMemory
+	SqlServer,
+	Sqlite,
+	InMemory
 }

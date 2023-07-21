@@ -5,11 +5,7 @@ using Pizzaaa.BLL.Ports;
 using Pizzaaa.Persistance.Adapters;
 using Pizzaaa.Persistance.Data;
 using Pizzaaa.Persistance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pizzaaa.Persistance.Repositories.Interfaces;
 
 namespace Pizzaaa.Persistance.Configuration;
 
@@ -41,20 +37,19 @@ public static class PersistanceConfiguration
 		services.AddDatabaseConnection(settings);
 
 		services.AddScoped<IPizzaPort, DbPizzaAdapter>();
-		services.AddScoped<IUserPort, DbUserAdapter>();
 		services.AddScoped<IStorePort, DbStoreAdapter>();
 		services.AddScoped<IIngredientPort, DbIngredientAdapter>();
 		services.AddScoped<IUserPizzaPreferencePort, DbUserPizzaPreferenceAdapter>();
 		services.AddScoped<ISecurityPort, DbSecurityAdapter>();
 		services.AddScoped<IOrderPort, DbOrderAdapters>();
 
-        services.AddScoped<IngredientRepository>();
-		services.AddScoped<PizzaRepository>();
-		services.AddScoped<StoreRepository>();
-		services.AddScoped<UserRepository>();
-		services.AddScoped<SecurityRepository>();
-		services.AddScoped<UserPizzaPreferenceRepository>();
-		services.AddScoped<OrderRepository>();
+		services.AddScoped<IIngredientRepository, IngredientRepository>();
+		services.AddScoped<IPizzaRepository, PizzaRepository>();
+		services.AddScoped<IStoreRepository, StoreRepository>();
+		services.AddScoped<IUserRepository, UserRepository>();
+		services.AddScoped<ISecurityRepository, SecurityRepository>();
+		services.AddScoped<IUserPizzaPreferenceRepository, UserPizzaPreferenceRepository>();
+		services.AddScoped<IOrderRepository, OrderRepository>();
 
 		return services;
 	}

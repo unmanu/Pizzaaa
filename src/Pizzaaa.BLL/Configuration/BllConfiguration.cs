@@ -1,28 +1,27 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Pizzaaa.BLL.Ports;
 using Pizzaaa.BLL.Security;
 using Pizzaaa.BLL.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pizzaaa.BLL.Services.Interfaces;
+using Pizzaaa.BLL.System;
+using Pizzaaa.BLL.System.Interfaces;
 
 namespace Pizzaaa.BLL.Configuration;
 
 public static class BllConfiguration
 {
 
-    public static IServiceCollection AddBllModule(this IServiceCollection services)
-    {
-        services.AddScoped<SecurityService>();
+	public static IServiceCollection AddBllModule(this IServiceCollection services)
+	{
+		services.AddScoped<ISecurityService, SecurityService>();
+		services.AddSingleton<IRandomService, RandomService>();
+		services.AddSingleton<IDateService, DateService>();
 
-        services.AddScoped<PizzaService>();
-        services.AddScoped<StoreService>();
-        services.AddScoped<IngredientService>();
-        services.AddScoped<UserPizzaPreferenceService>();
-        services.AddScoped<OrderService>();
+		services.AddScoped<IPizzaService, PizzaService>();
+		services.AddScoped<IStoreService, StoreService>();
+		services.AddScoped<IIngredientService, IngredientService>();
+		services.AddScoped<IUserPizzaPreferenceService, UserPizzaPreferenceService>();
+		services.AddScoped<IOrderService, OrderService>();
 
-        return services;
-    }
+		return services;
+	}
 }

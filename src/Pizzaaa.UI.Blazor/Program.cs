@@ -1,12 +1,8 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
-using Pizzaaa.BLL.Services;
-using Pizzaaa.Persistance.Configuration;
-using Pizzaaa.BLL.Configuration;
-using Pizzaaa.UI.Blazor.Data;
-using Pizzaaa.UI.Blazor.Data.Theme;
 using MudExtensions.Services;
+using Pizzaaa.BLL.Configuration;
+using Pizzaaa.Persistance.Configuration;
+using Pizzaaa.UI.Blazor.Data.Theme;
 
 var builder = WebApplication.CreateBuilder(args);
 

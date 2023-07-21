@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pizzaaa.Persistance.Configuration;
+﻿namespace Pizzaaa.Persistance.Configuration;
 
 public class PersistanceSettingsOptions
 {
@@ -19,9 +13,9 @@ public class PersistanceSettingsOptions
 	public bool CreateDatabaseIfNotExists { get; set; } = default!;
 	public bool RecreateDatabase { get; set; } = default!;
 	public bool SqliteInAppFolder { get; set; } = default!;
-    public string? JsonSourceInitializer { get; set; }
+	public string? JsonSourceInitializer { get; set; }
 
-    public PersistanceType GetEnumTipoDatabase()
+	public PersistanceType GetEnumTipoDatabase()
 	{
 		return (PersistanceType?.ToLower()) switch
 		{

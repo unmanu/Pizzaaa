@@ -1,14 +1,14 @@
 ﻿using Pizzaaa.BLL.Models;
+using Pizzaaa.BLL.Ports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizzaaa.BLL.Ports;
+namespace Pizzaaa.BLL.Services.Interfaces;
 
-public interface IUserPort
+public interface IPizzaService
 {
-    Task<User?> FindByUsername(string username);
-    Task<User> Insert(User user);
+    Task<List<Pizza>> FindAllByStore(int storeId);
 }

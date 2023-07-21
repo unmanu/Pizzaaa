@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Pizzaaa.BLL.Models.Exceptions;
 
@@ -11,38 +6,38 @@ namespace Pizzaaa.BLL.Models.Exceptions;
 public class BllException : BaseException
 {
 
-    public BllException()
-    {
-        Errors = new();
-    }
+	public BllException()
+	{
+		Errors = new();
+	}
 
-    public BllException(string error)
-        : base(error)
-    {
-    }
+	public BllException(string error)
+		: base(error)
+	{
+	}
 
-    public BllException(ErrorDetail error)
-        : base(error)
-    {
-    }
+	public BllException(ErrorDetail error)
+		: base(error)
+	{
+	}
 
-    public BllException(List<ErrorDetail> errors)
-        : base(errors)
-    {
-    }
+	public BllException(List<ErrorDetail> errors)
+		: base(errors)
+	{
+	}
 
-    public BllException(string message, Exception inner)
-        : base(message, inner)
-    {
-    }
+	public BllException(string message, Exception inner)
+		: base(message, inner)
+	{
+	}
 
-    public BllException(ErrorDetail error, Exception inner)
-        : base(error, inner)
-    {
-    }
+	public BllException(ErrorDetail error, Exception inner)
+		: base(error, inner)
+	{
+	}
 
-    protected BllException(SerializationInfo info, StreamingContext context)
-    : base(info, context)
-    {
-    }
+	protected BllException(SerializationInfo info, StreamingContext context)
+	: base(info, context)
+	{
+	}
 }

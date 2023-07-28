@@ -87,6 +87,11 @@ public static class PersistanceConfiguration
 		{
 			return $"Data Source=pizza.db";
 		}
+		else if (!string.IsNullOrWhiteSpace(settings.SqliteCustomFolder))
+		{
+			Directory.CreateDirectory(settings.SqliteCustomFolder);
+			return $"Data Source={settings.SqliteCustomFolder}/pizza.db";
+		}
 		else
 		{
 			string cartellaLocalAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

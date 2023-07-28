@@ -1,8 +1,10 @@
-﻿namespace Pizzaaa.Persistance.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
+namespace Pizzaaa.Persistance.Models;
+
+[Index(nameof(PizzaId), nameof(UserId), IsUnique = true)]
 internal class UserPizzaPreference : AuditedEntity
 {
-
 	public int PizzaId { get; set; }
 	public Pizza Pizza { get; set; } = new();
 	public int UserId { get; set; }

@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Pizzaaa.Persistance.Configuration;
-
-namespace Pizzaaa.IntegrationTest.Mappers;
+﻿namespace Pizzaaa.IntegrationTest.Mappers;
 
 public class MappingTest : BaseMappingTest
 {

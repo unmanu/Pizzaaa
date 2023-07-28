@@ -57,8 +57,10 @@ public class UserPizzaPreferenceRepositoryIntegrationTest : BaseDatabaseTest
 		await context.Stores.AddAsync(pizzaHutStore);
 		await context.SaveChangesAsync();
 
-		Pizza pizza = PizzaMother.AEntityPizza(181, "banana pizza", pizzaHutStore);
-		await context.Pizzas.AddAsync(pizza);
+		Pizza pizza1 = PizzaMother.AEntityPizza(181, "banana pizza", pizzaHutStore);
+		Pizza pizza2 = PizzaMother.AEntityPizza(182, "pineapple pizza", pizzaHutStore);
+		await context.Pizzas.AddAsync(pizza1);
+		await context.Pizzas.AddAsync(pizza2);
 		await context.SaveChangesAsync();
 
 		User user1 = UserMother.AEntityUser(16, "jack");
@@ -67,9 +69,9 @@ public class UserPizzaPreferenceRepositoryIntegrationTest : BaseDatabaseTest
 		await context.Users.AddAsync(user2);
 		await context.SaveChangesAsync();
 
-		UserPizzaPreference preference1 = UserPizzaPreferenceMother.AEntityUserPizzaPreference(6, pizza, user1);
-		UserPizzaPreference preference2 = UserPizzaPreferenceMother.AEntityUserPizzaPreference(91, pizza, user2);
-		UserPizzaPreference preference3 = UserPizzaPreferenceMother.AEntityUserPizzaPreference(50, pizza, user1);
+		UserPizzaPreference preference1 = UserPizzaPreferenceMother.AEntityUserPizzaPreference(6, pizza1, user1);
+		UserPizzaPreference preference2 = UserPizzaPreferenceMother.AEntityUserPizzaPreference(91, pizza2, user2);
+		UserPizzaPreference preference3 = UserPizzaPreferenceMother.AEntityUserPizzaPreference(50, pizza2, user1);
 		await context.UserPizzaPreferences.AddAsync(preference1);
 		await context.UserPizzaPreferences.AddAsync(preference2);
 		await context.UserPizzaPreferences.AddAsync(preference3);

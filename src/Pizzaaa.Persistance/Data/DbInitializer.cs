@@ -17,7 +17,7 @@ internal static class DbInitializer
 		}
 		_insertDate = DateTime.Now;
 
-		if (jsonSourceInitializert != null)
+		if (!string.IsNullOrWhiteSpace(jsonSourceInitializert) && File.Exists(jsonSourceInitializert))
 		{
 			JsonPizzaContainer? container = JsonPizzaParser.ParseJsonPizza(jsonSourceInitializert);
 			if (container != null)

@@ -26,12 +26,9 @@ builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
+app.CreaDatabase(persistanceSettingsOptions);
 
-if (app.Environment.IsDevelopment())
-{
-	app.CreaDatabase(persistanceSettingsOptions);
-}
-else
+if (!app.Environment.IsDevelopment())
 {
 	// Configure the HTTP request pipeline.
 	app.UseExceptionHandler("/Error");

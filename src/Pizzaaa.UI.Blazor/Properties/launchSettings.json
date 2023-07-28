@@ -29,6 +29,7 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "-v \"C:\\data:/data\"",
       "publishAllPorts": true,
       "useSSL": true
     }

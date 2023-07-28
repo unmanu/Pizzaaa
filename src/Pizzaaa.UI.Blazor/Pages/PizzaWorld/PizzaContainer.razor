@@ -16,7 +16,7 @@
 
 <MudPaper Elevation="0" Style="overflow:hidden; position:relative;">
 	<MudDrawerContainer Class="mud-height-full">
-		<MudDrawer @bind-Open="@openEnd" Width="300px" Fixed="false" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Persistent">
+		<MudDrawer @bind-Open="@openEnd" Width="300px" Fixed="false" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Persistent" data-testid='orderDrawer'>
 			<MudDrawerHeader>
 				<MudText Typo="Typo.h6">
 					Ordine
@@ -27,7 +27,7 @@
 				<MudStack>
 					@foreach (Store store in _stores)
 					{
-						<MudCard>
+						<MudCard data-testid='orderStoreCard' >
 							<MudCardHeader>
 								<CardHeaderContent>
 									<MudText>@store.Name</MudText>
@@ -54,14 +54,14 @@
 			</MudContainer>
 		</MudDrawer>
 		<MudContainer>
-			<MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6" ActivePanelIndexChanged="@(index => TabChanged(index))">
+			<MudTabs data-testid='storeTabs' Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6" ActivePanelIndexChanged="@(index => TabChanged(index))">
 				@foreach (Store store in _stores)
 				{
 					<MudTabPanel Text="@store.Name" BadgeData="CountSelectedPizzas(store.ID)" BadgeColor="Color.Info" />
 				}
 			</MudTabs>
 
-			<MudTable @ref="_table" T="Pizza" Items="@_pizzas" Hover="true"
+			<MudTable data-testid='pizzaTable' @ref="_table" T="Pizza" Items="@_pizzas" Hover="true"
 					  Filter="new Func<Pizza,bool>(FilterFunc1)"
 					  OnRowClick="@OnRowClick" SelectOnRowClick="false"
 					  Height="350px" Breakpoint="Breakpoint.Sm" Virtualize="true" FixedHeader="true">
@@ -78,25 +78,25 @@
 
 
 					<MudComboBox @bind-Value="@_includedIngredientValue" @bind-SelectedValues="@_includedIngredientsSelectedValues" Variant="Variant.Filled"
-								 Label="Includi" InputPresenter="ValuePresenter.Chip" MultiSelection="true" Editable="true"
+								 Label="Includi" InputPresenter="ValuePresenter.Chip" MultiSelection="true" Editable="true" Class="includeIngredientCombo"
 								 ChipCloseable="true" ChipSize="Size.Medium" ChipVariant="Variant.Filled" Color="Color.Primary"
 								 ToStringFunc="@(e => e?.Name)">
 						<ChildContent>
 							@foreach (Ingredient ingredient in _ingredients)
 							{
-								<MudComboBoxItem Value="@ingredient" Text="@ingredient.Name">@ingredient.Name</MudComboBoxItem>
+								<MudComboBoxItem Value="@ingredient" Text="@ingredient.Name" data-testid='checkcombo-include-ingredient' />
 							}
 						</ChildContent>
 					</MudComboBox>
 
 					<MudComboBox @bind-Value="@_excludedIngredientValue" @bind-SelectedValues="@_excludedIngredientsSelectedValues" Variant="Variant.Filled"
-								 Label="Escludi" InputPresenter="ValuePresenter.Chip" MultiSelection="true" Editable="true"
+								 Label="Escludi" InputPresenter="ValuePresenter.Chip" MultiSelection="true" Editable="true" Class="excludeIngredientCombo"
 								 ChipCloseable="true" ChipSize="Size.Medium" ChipVariant="Variant.Filled" Color="Color.Primary"
 								 ToStringFunc="@(e => e?.Name)">
 						<ChildContent>
 							@foreach (Ingredient ingredient in _ingredients)
 							{
-								<MudComboBoxItem Value="@ingredient" Text="@ingredient.Name">@ingredient.Name</MudComboBoxItem>
+								<MudComboBoxItem Value="@ingredient" Text="@ingredient.Name" data-testid='checkcombo-exclude-ingredient' />
 							}
 						</ChildContent>
 					</MudComboBox>

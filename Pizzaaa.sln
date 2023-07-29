@@ -19,12 +19,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.IntegrationTest", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{B0E34671-772A-40BA-B002-6C27EC4F308C}"
 	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
 		resources\Pizzas.json = resources\Pizzas.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.UI.Blazor.Test", "test\Pizzaaa.UI.Blazor.Test\Pizzaaa.UI.Blazor.Test.csproj", "{A910E75A-BB7D-432D-A98D-964726AF42A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaaa.Playwright", "test\Pizzaaa.Playwright\Pizzaaa.Playwright.csproj", "{789C7ED2-6AFC-43A2-8D6D-CA8C00E2CCAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaaa.Playwright", "test\Pizzaaa.Playwright\Pizzaaa.Playwright.csproj", "{789C7ED2-6AFC-43A2-8D6D-CA8C00E2CCAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

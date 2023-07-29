@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
 		resources\Pizzas.json = resources\Pizzas.json
+		.github\workflows\publish-ghcr.yml = .github\workflows\publish-ghcr.yml
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -14,7 +14,7 @@ WORKDIR "/src/src/Pizzaaa.UI.Blazor"
 RUN dotnet build "Pizzaaa.UI.Blazor.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Pizzaaa.UI.Blazor.csproj" -c Release -o /app/publish /p:UseAppHost=false -r linux-arm64
+RUN dotnet publish "Pizzaaa.UI.Blazor.csproj" -c Release -o /app/publish -r linux-arm64
 
 FROM base AS final
 WORKDIR /app

@@ -35,7 +35,8 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
 	{
 		if (entity is AuditedEntity auditedEntity)
 		{
-			AddInsertUser(auditedEntity);
+			Pizzaaa.BLL.Models.User user = await _securityService.GetLoggedUser();
+			AddInsertUser(auditedEntity, user);
 		}
 
 		await GetSet().AddAsync(entity);
@@ -63,21 +64,22 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
 		updateFields(toBeUpdated);
 		if (toBeUpdated is AuditedEntity auditedEntity)
 		{
-			AddUpdateUser(auditedEntity);
+			Pizzaaa.BLL.Models.User user = await _securityService.GetLoggedUser();
+			AddUpdateUser(auditedEntity, user);
 		}
 		await _pizzaContext.SaveChangesAsync();
 		return toBeUpdated;
 	}
 
-	private void AddInsertUser(AuditedEntity audit)
+	private void AddInsertUser(AuditedEntity audit, Pizzaaa.BLL.Models.User user)
 	{
-		audit.InsertUser = _securityService.GetLoggedUser().Username;
+		audit.InsertUser = user.Username;
 		audit.InsertDate = _dateService.GetNow();
 	}
 
-	private void AddUpdateUser(AuditedEntity audit)
+	private void AddUpdateUser(AuditedEntity audit, Pizzaaa.BLL.Models.User user)
 	{
-		audit.UpdateUser = _securityService.GetLoggedUser().Username;
+		audit.UpdateUser = user.Username;
 		audit.UpdateDate = _dateService.GetNow();
 
 	}

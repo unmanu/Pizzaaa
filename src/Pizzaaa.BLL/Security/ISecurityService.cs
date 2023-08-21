@@ -4,18 +4,15 @@ namespace Pizzaaa.BLL.Security;
 public interface ISecurityService
 {
 	Task LoginOrRegister(string username, string password);
-
 	string HashPassword(string password, out string hexSalt);
 
 	bool VerifyPassword(string password, string hash, string hexSalt);
 
-	Task UpdateLoggedUser(string? username = null);
+	Task<User> GetLoggedUser();
 
-	User GetLoggedUser();
+	string? GetLoggedUsername();
 
-	string GetLoggedUsername();
-
-	int GetLoggedId();
+	Task<int> GetLoggedId();
 
 	bool IsUserLogged();
 }

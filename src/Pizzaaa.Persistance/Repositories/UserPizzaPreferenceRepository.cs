@@ -22,7 +22,7 @@ internal class UserPizzaPreferenceRepository : BaseRepository<UserPizzaPreferenc
 
 	public async Task<List<UserPizzaPreference>> FindAllByUser()
 	{
-		int userId = _securityService.GetLoggedId();
+		int userId = await _securityService.GetLoggedId();
 		return await GetSet()
 			.Where(x => x.UserId == userId)
 			.ToListAsync();

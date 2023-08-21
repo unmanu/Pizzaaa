@@ -83,7 +83,7 @@ public class BaseRepositoryIntegrationTest : BaseDatabaseTest
 		User userToInsert = UserMother.AEntityUser(0, "shalia");
 		BLL.Models.User currentUser = new() { Username = "test" };
 
-		_mockSecurityService.Setup(mock => mock.GetLoggedUser()).Returns(currentUser);
+		_mockSecurityService.Setup(mock => mock.GetLoggedUser()).ReturnsAsync(currentUser);
 		_mockDateService.Setup(mock => mock.GetNow()).Returns(now);
 
 		await repository.Insert(userToInsert);
@@ -105,7 +105,7 @@ public class BaseRepositoryIntegrationTest : BaseDatabaseTest
 		User userToInsert = UserMother.AEntityUser(7, "shalia");
 		BLL.Models.User currentUser = new() { Username = "test" };
 
-		_mockSecurityService.Setup(mock => mock.GetLoggedUser()).Returns(currentUser);
+		_mockSecurityService.Setup(mock => mock.GetLoggedUser()).ReturnsAsync(currentUser);
 		_mockDateService.Setup(mock => mock.GetNow()).Returns(now);
 
 		InvalidOperationException exception = await Assert.ThrowsAsync<InvalidOperationException>(
@@ -148,7 +148,7 @@ public class BaseRepositoryIntegrationTest : BaseDatabaseTest
 		BaseRepository<User> repository = new UserRepository(context, _mockSecurityService.Object, _mockDateService.Object);
 		BLL.Models.User currentUser = new() { Username = "test" };
 
-		_mockSecurityService.Setup(mock => mock.GetLoggedUser()).Returns(currentUser);
+		_mockSecurityService.Setup(mock => mock.GetLoggedUser()).ReturnsAsync(currentUser);
 		_mockDateService.Setup(mock => mock.GetNow()).Returns(now);
 
 		User? result = await repository.Update(7, x => x.Username = "joseph");

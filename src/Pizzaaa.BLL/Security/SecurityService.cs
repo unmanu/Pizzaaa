@@ -15,7 +15,6 @@ public class SecurityService : ISecurityService
 
 	private readonly IHttpContextAccessor _httpContextAccessor;
 	private readonly ISecurityPort _securityPort;
-	private User? _user;
 
 	public SecurityService(IHttpContextAccessor httpContextAccessor, ISecurityPort securityPort)
 	{
@@ -23,6 +22,45 @@ public class SecurityService : ISecurityService
 		this._securityPort = securityPort;
 	}
 
+	public string? GetLoggedUsername()
+	{
+		var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
+		return claimsPrincipal?.Identity?.Name;
+	}
+
+	public bool IsUserLogged()
+	{
+		return GetLoggedUsername() != null;
+	}
+
+	public async Task<User> GetLoggedUser()
+	{
+		string? username = GetLoggedUsername();
+		if (username == null)
+		{
+			return new User()
+			{
+				ID = 0,
+				Username = "Unknown"
+			};
+		}
+		User? user = await _securityPort.FindByUsername(username);
+		if (user == null)
+		{
+			return new User()
+			{
+				ID = 0,
+				Username = "Unknown"
+			};
+		}
+		return user;
+	}
+
+	public async Task<int> GetLoggedId()
+	{
+		User user = await GetLoggedUser();
+		return user.ID;
+	}
 
 	public async Task LoginOrRegister(string username, string password)
 	{
@@ -35,7 +73,6 @@ public class SecurityService : ISecurityService
 		{
 			await CheckPassword(password, user);
 		}
-		await UpdateLoggedUser(username);
 	}
 
 	private async Task InsertNewUser(string username, string password)
@@ -83,48 +120,5 @@ public class SecurityService : ISecurityService
 		byte[] saltAsBytes = HexUtils.HexToByteArray(hexSalt);
 		var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, saltAsBytes, ITERATIONS, _hashAlgorithm, KEYSIZE);
 		return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
-	}
-
-	public async Task UpdateLoggedUser(string? username = null)
-	{
-		if (username == null)
-		{
-			var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
-			username = claimsPrincipal?.Identity?.Name ?? "Unknown";
-		}
-		User? user = await _securityPort.FindByUsername(username);
-		if (user != null)
-		{
-			_user = user;
-		}
-		else
-		{
-			_user = new User()
-			{
-				ID = 0,
-				Username = username
-			};
-		}
-	}
-
-	public User GetLoggedUser()
-	{
-		return _user!;
-	}
-
-	public string GetLoggedUsername()
-	{
-		return _user?.Username ?? "Unknown";
-	}
-
-	public int GetLoggedId()
-	{
-		return _user?.ID ?? 0;
-	}
-
-	public bool IsUserLogged()
-	{
-		var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
-		return claimsPrincipal?.Identity?.Name != null;
 	}
 }

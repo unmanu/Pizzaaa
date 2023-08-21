@@ -31,7 +31,8 @@ public class UserPizzaPreferenceService : IUserPizzaPreferenceService
 		{
 			return userPizzaPreference;
 		}
-		userPizzaPreference.UserId = _securityService.GetLoggedUser().ID;
+		User user = await _securityService.GetLoggedUser();
+		userPizzaPreference.UserId = user.ID;
 		return await _userPizzaPreferencePort.UpdateUserPreference(userPizzaPreference);
 	}
 }

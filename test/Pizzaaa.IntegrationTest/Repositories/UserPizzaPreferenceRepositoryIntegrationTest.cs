@@ -27,7 +27,7 @@ public class UserPizzaPreferenceRepositoryIntegrationTest : BaseDatabaseTest
 		await DbTestInitializer(context);
 		UserPizzaPreferenceRepository repository = new(context, _mockSecurityService.Object, _mockDateService.Object);
 
-		_mockSecurityService.Setup(mock => mock.GetLoggedId()).Returns(18);
+		_mockSecurityService.Setup(mock => mock.GetLoggedId()).ReturnsAsync(18);
 
 		List<UserPizzaPreference> result = await repository.FindAllByUser();
 
@@ -42,7 +42,7 @@ public class UserPizzaPreferenceRepositoryIntegrationTest : BaseDatabaseTest
 		await DbTestInitializer(context);
 		UserPizzaPreferenceRepository repository = new(context, _mockSecurityService.Object, _mockDateService.Object);
 
-		_mockSecurityService.Setup(mock => mock.GetLoggedId()).Returns(9999);
+		_mockSecurityService.Setup(mock => mock.GetLoggedId()).ReturnsAsync(9999);
 
 		List<UserPizzaPreference> result = await repository.FindAllByUser();
 
